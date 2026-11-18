@@ -1,0 +1,3664 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ENTREPRENEURSHIP LAB | Jelajahi Ide, Temukan Peluang, Bangun Usaha!</title>
+  <style>
+    /* ==========================================================================
+       DESIGN SYSTEM & VARIABLES (OFFLINE-FIRST, MODERN FUTURISTIC NAVY THEME)
+       ========================================================================== */
+    :root {
+      --navy-dark: #070d1f;
+      --navy-main: #0f1c3f;
+      --navy-light: #182b5c;
+      --navy-card: rgba(20, 36, 78, 0.82);
+      --purple-accent: #8b5cf6;
+      --purple-glow: rgba(139, 92, 246, 0.35);
+      --teal-accent: #14b8a6;
+      --teal-glow: rgba(20, 184, 166, 0.35);
+      --orange-accent: #f97316;
+      --orange-hover: #ea580c;
+      --orange-glow: rgba(249, 115, 22, 0.4);
+      --text-main: #f8fafc;
+      --text-muted: #cbd5e1;
+      --text-dim: #94a3b8;
+      --border-glass: rgba(255, 255, 255, 0.14);
+      --danger: #ef4444;
+      --warning: #eab308;
+      --success: #10b981;
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --shadow-card: 0 12px 32px rgba(3, 7, 18, 0.45);
+      --transition: all 0.28s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Roboto, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: radial-gradient(circle at 12% 15%, #1e1b4b 0%, var(--navy-main) 42%, var(--navy-dark) 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* Animated subtle background grid & orbs */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 42px 42px;
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    .bg-orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(85px);
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0.45;
+    }
+    .orb-1 { width: 340px; height: 340px; background: var(--purple-accent); top: -80px; right: -60px; }
+    .orb-2 { width: 300px; height: 300px; background: var(--teal-accent); bottom: -80px; left: -60px; }
+
+    /* ==========================================================================
+       HEADER & TOP NAVIGATION BAR
+       ========================================================================== */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(7, 13, 31, 0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-glass);
+      padding: 10px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .brand-mini {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    .brand-badge {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--purple-accent), var(--teal-accent));
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      box-shadow: 0 4px 14px var(--purple-glow);
+    }
+
+    .brand-mini h1 {
+      font-size: 1.05rem;
+      letter-spacing: 0.5px;
+      font-weight: 800;
+      background: linear-gradient(90deg, #fff, #99f6e4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .topbar-controls {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .progress-pill {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border-glass);
+      border-radius: 999px;
+      padding: 6px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.82rem;
+    }
+
+    .progress-track {
+      width: 90px;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--teal-accent), var(--purple-accent));
+      transition: width 0.5s ease;
+    }
+
+    /* ==========================================================================
+       BUTTONS & INTERACTIVE CONTROLS
+       ========================================================================== */
+    .btn {
+      border: none;
+      border-radius: var(--radius-sm);
+      padding: 10px 16px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: var(--transition);
+      color: #fff;
+      text-decoration: none;
+      user-select: none;
+    }
+
+    .btn:active {
+      transform: scale(0.97);
+    }
+
+    .btn-orange {
+      background: linear-gradient(135deg, var(--orange-accent), #fb923c);
+      box-shadow: 0 6px 20px var(--orange-glow);
+    }
+    .btn-orange:hover {
+      background: linear-gradient(135deg, var(--orange-hover), var(--orange-accent));
+      transform: translateY(-2px);
+    }
+
+    .btn-purple {
+      background: linear-gradient(135deg, var(--purple-accent), #a855f7);
+      box-shadow: 0 6px 18px var(--purple-glow);
+    }
+    .btn-purple:hover {
+      filter: brightness(1.1);
+      transform: translateY(-2px);
+    }
+
+    .btn-teal {
+      background: linear-gradient(135deg, var(--teal-accent), #0d9488);
+      box-shadow: 0 6px 18px var(--teal-glow);
+    }
+    .btn-teal:hover {
+      filter: brightness(1.1);
+      transform: translateY(-2px);
+    }
+
+    .btn-glass {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border-glass);
+      color: var(--text-main);
+    }
+    .btn-glass:hover {
+      background: rgba(255, 255, 255, 0.16);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .btn-danger {
+      background: rgba(239, 68, 68, 0.2);
+      border: 1px solid rgba(239, 68, 68, 0.5);
+      color: #fca5a5;
+    }
+    .btn-danger:hover {
+      background: var(--danger);
+      color: #fff;
+    }
+
+    .btn-sm {
+      padding: 7px 12px;
+      font-size: 0.82rem;
+    }
+
+    .btn-lg {
+      padding: 14px 28px;
+      font-size: 1.05rem;
+      border-radius: 14px;
+    }
+
+    /* ==========================================================================
+       QUICK MENU NAVIGATION BAR (HORIZONTAL SCROLLABLE ON MOBILE)
+       ========================================================================== */
+    .nav-strip {
+      background: rgba(15, 28, 63, 0.72);
+      border-bottom: 1px solid var(--border-glass);
+      padding: 8px 16px;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: thin;
+    }
+
+    .nav-tab {
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-muted);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      white-space: nowrap;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition);
+    }
+
+    .nav-tab:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+    }
+
+    .nav-tab.active {
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.35), rgba(20, 184, 166, 0.35));
+      border-color: var(--teal-accent);
+      color: #fff;
+      box-shadow: 0 0 15px rgba(20, 184, 166, 0.25);
+    }
+
+    /* ==========================================================================
+       MAIN CONTAINER & SECTION ANIMATIONS
+       ========================================================================== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px 18px 60px;
+    }
+
+    .view-section {
+      display: none;
+      animation: fadeSlideUp 0.42s ease forwards;
+    }
+
+    .view-section.active {
+      display: block;
+    }
+
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ==========================================================================
+       CARDS & TYPOGRAPHY
+       ========================================================================== */
+    .glass-card {
+      background: var(--navy-card);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-md);
+      padding: 22px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .section-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 22px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border-glass);
+    }
+
+    .section-title {
+      font-size: 1.55rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .badge-tag {
+      display: inline-block;
+      padding: 4px 11px;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+    .tag-purple { background: rgba(139, 92, 246, 0.25); color: #ddd6fe; border: 1px solid rgba(139, 92, 246, 0.5); }
+    .tag-teal { background: rgba(20, 184, 166, 0.22); color: #99f6e4; border: 1px solid rgba(20, 184, 166, 0.5); }
+    .tag-orange { background: rgba(249, 115, 22, 0.22); color: #fed7aa; border: 1px solid rgba(249, 115, 22, 0.5); }
+
+    /* ==========================================================================
+       DASHBOARD / HERO SECTION
+       ========================================================================== */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    @media (max-width: 860px) {
+      .hero-grid { grid-template-columns: 1fr; }
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 4.2vw, 3.1rem);
+      font-weight: 900;
+      line-height: 1.15;
+      margin: 12px 0;
+      background: linear-gradient(135deg, #ffffff 15%, #c4b5fd 55%, #5eead4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-slogan {
+      font-size: 1.18rem;
+      color: #5eead4;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .hero-meta {
+      background: rgba(255, 255, 255, 0.05);
+      border-left: 4px solid var(--purple-accent);
+      padding: 12px 16px;
+      border-radius: 0 12px 12px 0;
+      margin: 18px 0 24px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+      gap: 18px;
+      margin-top: 16px;
+    }
+
+    .menu-card {
+      background: linear-gradient(160deg, rgba(24, 43, 92, 0.9), rgba(11, 21, 48, 0.95));
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .menu-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.14), rgba(20, 184, 166, 0.14));
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .menu-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--teal-accent);
+      box-shadow: 0 16px 35px rgba(20, 184, 166, 0.22);
+    }
+
+    .menu-card:hover::after {
+      opacity: 1;
+    }
+
+    .menu-icon-box {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      font-size: 1.6rem;
+      margin-bottom: 14px;
+    }
+
+    .menu-card h3 {
+      font-size: 1.12rem;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+
+    .menu-card p {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .menu-status {
+      font-size: 0.78rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--teal-accent);
+      z-index: 1;
+    }
+
+    /* ==========================================================================
+       AUDIO CONTROL BAR (TTS & SOUND SETTINGS)
+       ========================================================================== */
+    .audio-panel {
+      position: fixed;
+      bottom: 18px;
+      right: 18px;
+      z-index: 120;
+      background: rgba(10, 19, 44, 0.95);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--purple-accent);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      width: min(350px, calc(100vw - 36px));
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65);
+      display: none;
+    }
+
+    .audio-panel.open {
+      display: block;
+      animation: fadeSlideUp 0.25s ease;
+    }
+
+    .tts-inline-bar {
+      background: rgba(139, 92, 246, 0.14);
+      border: 1px solid rgba(139, 92, 246, 0.4);
+      border-radius: 12px;
+      padding: 10px 14px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    /* ==========================================================================
+       MENU 1: MATERI INTERAKTIF
+       ========================================================================== */
+    .materi-layout {
+      display: grid;
+      grid-template-columns: 270px 1fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 860px) {
+      .materi-layout { grid-template-columns: 1fr; }
+    }
+
+    .submateri-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .submateri-btn {
+      text-align: left;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-glass);
+      color: var(--text-muted);
+      padding: 12px 14px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 0.88rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      transition: var(--transition);
+    }
+
+    .submateri-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+    }
+
+    .submateri-btn.active {
+      background: linear-gradient(135deg, var(--purple-accent), #6d28d9);
+      border-color: #c4b5fd;
+      color: #fff;
+    }
+
+    .infographic-box {
+      background: rgba(7, 13, 31, 0.65);
+      border: 1px dashed rgba(20, 184, 166, 0.55);
+      border-radius: 14px;
+      padding: 18px;
+      margin: 16px 0;
+    }
+
+    .case-box {
+      background: linear-gradient(135deg, rgba(249, 115, 22, 0.14), rgba(139, 92, 246, 0.14));
+      border-left: 4px solid var(--orange-accent);
+      border-radius: 12px;
+      padding: 16px;
+      margin: 16px 0;
+    }
+
+    .quiz-option {
+      display: block;
+      width: 100%;
+      text-align: left;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border-glass);
+      color: #fff;
+      padding: 12px 15px;
+      border-radius: 10px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .quiz-option:hover {
+      background: rgba(139, 92, 246, 0.22);
+      border-color: var(--purple-accent);
+    }
+
+    .quiz-option.correct {
+      background: rgba(16, 185, 129, 0.25);
+      border-color: var(--success);
+    }
+
+    .quiz-option.wrong {
+      background: rgba(239, 68, 68, 0.25);
+      border-color: var(--danger);
+    }
+
+    /* ==========================================================================
+       FORM ELEMENTS & INPUTS (SIMULASI, PRAKTIKUM, LKPD)
+       ========================================================================== */
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 14px;
+    }
+
+    .form-group {
+      margin-bottom: 14px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: #e2e8f0;
+      margin-bottom: 6px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select,
+    textarea {
+      width: 100%;
+      background: rgba(7, 13, 31, 0.78);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      padding: 10px 13px;
+      color: #fff;
+      font-size: 0.92rem;
+      transition: var(--transition);
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--teal-accent);
+      box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.22);
+    }
+
+    textarea {
+      min-height: 85px;
+      resize: vertical;
+    }
+
+    /* ==========================================================================
+       SIMULASI TABS & CALCULATOR METRICS
+       ========================================================================== */
+    .sim-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+      margin: 18px 0;
+    }
+
+    .metric-card {
+      background: rgba(7, 13, 31, 0.75);
+      border: 1px solid var(--border-glass);
+      border-radius: 14px;
+      padding: 15px;
+      text-align: center;
+    }
+
+    .metric-card .m-label {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      margin-bottom: 4px;
+    }
+
+    .metric-card .m-val {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--teal-accent);
+    }
+
+    /* ==========================================================================
+       GAME EDUKASI STYLES
+       ========================================================================== */
+    .game-arena {
+      background: linear-gradient(160deg, rgba(15, 28, 63, 0.95), rgba(7, 13, 31, 0.98));
+      border: 2px solid var(--purple-accent);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      position: relative;
+    }
+
+    .timer-bar-wrap {
+      width: 100%;
+      height: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 12px 0 18px;
+    }
+
+    .timer-bar {
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(90deg, var(--teal-accent), var(--orange-accent));
+      transition: width 0.25s linear;
+    }
+
+    .badge-showcase {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .earned-badge {
+      background: linear-gradient(135deg, rgba(249, 115, 22, 0.25), rgba(139, 92, 246, 0.25));
+      border: 1px solid var(--orange-accent);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #fed7aa;
+    }
+
+    /* ==========================================================================
+       SWOT TABLE & LKPD TABLE
+       ========================================================================== */
+    .swot-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    @media (max-width: 700px) {
+      .swot-grid { grid-template-columns: 1fr; }
+    }
+
+    .swot-box {
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid var(--border-glass);
+    }
+
+    .swot-s { background: rgba(16, 185, 129, 0.12); border-color: rgba(16, 185, 129, 0.4); }
+    .swot-w { background: rgba(234, 179, 8, 0.12); border-color: rgba(234, 179, 8, 0.4); }
+    .swot-o { background: rgba(59, 130, 246, 0.12); border-color: rgba(59, 130, 246, 0.4); }
+    .swot-t { background: rgba(239, 68, 68, 0.12); border-color: rgba(239, 68, 68, 0.4); }
+
+    table.data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0;
+    }
+
+    table.data-table th, table.data-table td {
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      padding: 10px;
+      text-align: left;
+      font-size: 0.88rem;
+    }
+
+    table.data-table th {
+      background: rgba(139, 92, 246, 0.25);
+      color: #fff;
+    }
+
+    /* ==========================================================================
+       TOAST / MODAL NOTIFICATION (NO ALERT/CONFIRM)
+       ========================================================================== */
+    .toast-box {
+      position: fixed;
+      top: 76px;
+      right: 20px;
+      z-index: 300;
+      background: rgba(15, 28, 63, 0.96);
+      border-left: 5px solid var(--teal-accent);
+      color: #fff;
+      padding: 14px 18px;
+      border-radius: 12px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.55);
+      max-width: 340px;
+      display: none;
+      animation: fadeSlideUp 0.25s ease;
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(3, 7, 18, 0.78);
+      backdrop-filter: blur(6px);
+      z-index: 250;
+      display: none;
+      place-items: center;
+      padding: 18px;
+    }
+
+    .modal-backdrop.open {
+      display: grid;
+    }
+
+    .modal-card {
+      background: #0f1c3f;
+      border: 1px solid var(--purple-accent);
+      border-radius: 20px;
+      max-width: 540px;
+      width: 100%;
+      padding: 24px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+    }
+
+    /* ==========================================================================
+       CERTIFICATE STYLING
+       ========================================================================== */
+    .certificate-frame {
+      background: linear-gradient(135deg, #fffdf7, #f0f9ff);
+      color: #0f172a;
+      border: 10px double #0f1c3f;
+      outline: 3px solid #f97316;
+      outline-offset: -16px;
+      padding: 36px 28px;
+      border-radius: 12px;
+      text-align: center;
+      position: relative;
+    }
+
+    /* ==========================================================================
+       PRINT STYLES (FOR LKPD & CERTIFICATE)
+       ========================================================================== */
+    @media print {
+      body {
+        background: #fff !important;
+        color: #000 !important;
+      }
+      .topbar, .nav-strip, .audio-panel, .no-print, .bg-orb {
+        display: none !important;
+      }
+      .container {
+        max-width: 100% !important;
+        padding: 0 !important;
+      }
+      .glass-card {
+        background: #fff !important;
+        color: #000 !important;
+        border: 1px solid #999 !important;
+        box-shadow: none !important;
+      }
+      input, textarea, select {
+        background: #fff !important;
+        color: #000 !important;
+        border: 1px solid #666 !important;
+      }
+      table.data-table th, table.data-table td {
+        border: 1px solid #333 !important;
+        color: #000 !important;
+      }
+      .swot-box {
+        border: 1px solid #333 !important;
+        background: #f8fafc !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+
+  <!-- TOP BAR -->
+  <header class="topbar no-print">
+    <div class="brand-mini" onclick="navigateTo('dashboard')" title="Kembali ke Beranda">
+      <div class="brand-badge">EL</div>
+      <div>
+        <h1>ENTREPRENEURSHIP LAB</h1>
+        <div style="font-size: 0.72rem; color: var(--text-dim);">SMK PERINTIS Adiluhur • Fase F</div>
+      </div>
+    </div>
+
+    <div class="topbar-controls">
+      <div class="progress-pill" title="Progres Belajar Keseluruhan">
+        <span>Progres: <strong id="globalProgressText" style="color: var(--teal-accent);">0%</strong></span>
+        <div class="progress-track">
+          <div class="progress-fill" id="globalProgressBar"></div>
+        </div>
+      </div>
+
+      <button class="btn btn-glass btn-sm" onclick="navigateTo('dashboard')" title="Beranda">🏠 Beranda</button>
+      <button class="btn btn-purple btn-sm" onclick="toggleAudioPanel()" title="Pengaturan Audio & Suara">🔊 Audio</button>
+      <button class="btn btn-glass btn-sm" onclick="openHelpModal()" title="Petunjuk Penggunaan">❓ Bantuan</button>
+    </div>
+  </header>
+
+  <!-- NAVIGATION STRIP -->
+  <nav class="nav-strip no-print" aria-label="Menu Utama">
+    <button class="nav-tab active" data-target="dashboard" onclick="navigateTo('dashboard')">🏠 Beranda</button>
+    <button class="nav-tab" data-target="materi" onclick="navigateTo('materi')">📘 1. Materi</button>
+    <button class="nav-tab" data-target="simulasi" onclick="navigateTo('simulasi')">🚀 2. Simulasi</button>
+    <button class="nav-tab" data-target="praktikum" onclick="navigateTo('praktikum')">🔍 3. Praktikum</button>
+    <button class="nav-tab" data-target="game" onclick="navigateTo('game')">🎮 4. Game Edukasi</button>
+    <button class="nav-tab" data-target="lkpd" onclick="navigateTo('lkpd')">📝 5. LKPD Digital</button>
+    <button class="nav-tab" data-target="evaluasi" onclick="navigateTo('evaluasi')">🎯 6. Evaluasi</button>
+    <button class="nav-tab" data-target="pengembang" onclick="navigateTo('pengembang')">👩‍🏫 7. Pengembang</button>
+  </nav>
+
+  <!-- FLOATING AUDIO & TTS SETTINGS PANEL -->
+  <aside class="audio-panel no-print" id="audioPanel">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+      <strong style="color:#c4b5fd;">🎛️ Pusat Kendali Audio & TTS</strong>
+      <button class="btn btn-glass btn-sm" onclick="toggleAudioPanel()">✕</button>
+    </div>
+
+    <div id="ttsStatusNotice" style="font-size:0.78rem; padding:8px; border-radius:8px; background:rgba(20,184,166,0.15); border:1px solid rgba(20,184,166,0.4); margin-bottom:10px;">
+      Memeriksa dukungan suara Bahasa Indonesia...
+    </div>
+
+    <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px;">
+      <button class="btn btn-teal btn-sm" onclick="playIntroNarration()">▶️ Narasi Pembuka</button>
+      <button class="btn btn-purple btn-sm" onclick="playGuideNarration()">📖 Petunjuk</button>
+    </div>
+
+    <div style="display:flex; gap:6px; margin-bottom:12px;">
+      <button class="btn btn-glass btn-sm" onclick="pauseTTS()">⏸️ Jeda</button>
+      <button class="btn btn-glass btn-sm" onclick="resumeTTS()">⏯️ Lanjut</button>
+      <button class="btn btn-danger btn-sm" onclick="stopTTS()">⏹️ Henti</button>
+    </div>
+
+    <div class="form-group" style="margin-bottom:10px;">
+      <label style="font-size:0.78rem;">Kecepatan Narasi: <span id="rateLabel">1.0x</span></label>
+      <input type="range" id="ttsRate" min="0.7" max="1.4" step="0.1" value="1.0" oninput="updateTTSRate(this.value)" />
+    </div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; padding-top:8px; border-top:1px solid var(--border-glass);">
+      <span style="font-size:0.82rem;">🎵 Musik Latar Instrumental</span>
+      <button class="btn btn-orange btn-sm" id="bgmToggleBtn" onclick="toggleBGM()">🔇 Aktifkan</button>
+    </div>
+  </aside>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast-box no-print" id="toastBox"></div>
+
+  <!-- HELP & CONFIRM MODAL -->
+  <div class="modal-backdrop no-print" id="modalBackdrop">
+    <div class="modal-card" id="modalContent"></div>
+  </div>
+
+  <!-- ==========================================================================
+       MAIN CONTENT CONTAINER
+       ========================================================================== -->
+  <main class="container">
+
+    <!-- ========================================================================
+         VIEW 0: DASHBOARD / BERANDA
+         ======================================================================== -->
+    <section id="view-dashboard" class="view-section active">
+      <div class="glass-card hero-grid">
+        <div>
+          <span class="badge-tag tag-purple">Kurikulum Merdeka • Fase F • Kelas XII SMK</span>
+          <h2 class="hero-title">ENTREPRENEURSHIP LAB</h2>
+          <p class="hero-slogan">“Jelajahi Ide, Temukan Peluang, Bangun Usaha!”</p>
+          <p style="color: var(--text-muted); font-size: 0.96rem;">
+            Laboratorium digital interaktif untuk mengasah kepekaan membaca peluang bisnis, menganalisis kebutuhan pasar, menyusun strategi SWOT, hingga mensimulasikan kelayakan usaha secara nyata.
+          </p>
+
+          <div class="hero-meta">
+            <div><strong>Mata Pelajaran:</strong> Kreativitas, Inovasi, dan Kewirausahaan (Pokok Bahasan: Peluang Usaha)</div>
+            <div><strong>Pengembang:</strong> Endang Lestari — <strong>SMK PERINTIS Adiluhur</strong> (Tahun 2026)</div>
+          </div>
+
+          <div style="display:flex; flex-wrap:wrap; gap:12px; align-items:center;">
+            <button class="btn btn-orange btn-lg" onclick="startLearningJourney()">
+              🚀 MULAI BELAJAR
+            </button>
+            <button class="btn btn-glass" onclick="openObjectivesModal()">
+              🎯 Tujuan Pembelajaran
+            </button>
+            <button class="btn btn-teal" id="certShortcutBtn" onclick="openCertificateModal()" style="display:none;">
+              🏆 Lihat Sertifikat Kelulusan
+            </button>
+          </div>
+        </div>
+
+        <!-- Custom SVG Entrepreneurship Illustration -->
+        <div style="text-align:center;">
+          <svg viewBox="0 0 420 340" width="100%" style="max-width:390px; filter: drop-shadow(0 12px 24px rgba(0,0,0,0.4));" aria-label="Ilustrasi Kewirausahaan">
+            <defs>
+              <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#8b5cf6"/>
+                <stop offset="100%" stop-color="#14b8a6"/>
+              </linearGradient>
+              <linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#f97316"/>
+                <stop offset="100%" stop-color="#facc15"/>
+              </linearGradient>
+            </defs>
+            <!-- Orbit rings -->
+            <ellipse cx="210" cy="180" rx="175" ry="70" fill="none" stroke="rgba(255,255,255,0.14)" stroke-width="2" stroke-dasharray="6 6"/>
+            <circle cx="210" cy="170" r="115" fill="rgba(20,184,166,0.08)" stroke="rgba(139,92,246,0.35)" stroke-width="2"/>
+            <!-- Growth Chart Bars -->
+            <rect x="115" y="195" width="26" height="55" rx="6" fill="#3b82f6" opacity="0.85"/>
+            <rect x="152" y="168" width="26" height="82" rx="6" fill="#8b5cf6" opacity="0.9"/>
+            <rect x="189" y="138" width="26" height="112" rx="6" fill="#14b8a6"/>
+            <rect x="226" y="105" width="26" height="145" rx="6" fill="url(#g2)"/>
+            <!-- Idea Lightbulb -->
+            <circle cx="292" cy="115" r="36" fill="url(#g1)"/>
+            <path d="M278 144 h28 v12 a8 8 0 0 1 -8 8 h-12 a8 8 0 0 1 -8 -8 z" fill="#f8fafc"/>
+            <path d="M292 92 v12 M268 115 h10 M306 115 h10 M275 98 l7 7 M309 98 l-7 7" stroke="#fef08a" stroke-width="3" stroke-linecap="round"/>
+            <!-- Rocket Launch -->
+            <g transform="translate(95, 75) rotate(-25)">
+              <path d="M25 0 C40 20, 42 50, 35 72 L15 72 C8 50, 10 20, 25 0 Z" fill="#f8fafc"/>
+              <path d="M25 0 C33 12, 36 22, 36 26 L14 26 C14 22, 17 12, 25 0 Z" fill="#f97316"/>
+              <circle cx="25" cy="42" r="7" fill="#0f1c3f" stroke="#14b8a6" stroke-width="3"/>
+              <path d="M12 58 L2 74 L15 70 Z" fill="#8b5cf6"/>
+              <path d="M38 58 L48 74 L35 70 Z" fill="#8b5cf6"/>
+              <path d="M18 72 L25 94 L32 72 Z" fill="#facc15"/>
+            </g>
+            <!-- Floating Coins / Nodes -->
+            <circle cx="330" cy="215" r="18" fill="#f97316"/>
+            <text x="330" y="220" text-anchor="middle" fill="#fff" font-weight="bold" font-size="14">Rp</text>
+            <rect x="85" y="262" width="250" height="32" rx="16" fill="rgba(15,28,63,0.92)" stroke="#14b8a6"/>
+            <text x="210" y="283" text-anchor="middle" fill="#99f6e4" font-size="12" font-weight="bold">IDE • ANALISIS • INOVASI • PROFIT</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- 7 MAIN MENU CARDS -->
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:10px;">
+        <h3 style="font-size:1.25rem;">🧭 Eksplorasi 7 Laboratorium Pembelajaran</h3>
+        <span style="font-size:0.84rem; color:var(--text-dim);">Klik salah satu kartu menu di bawah untuk memulai aktivitas</span>
+      </div>
+
+      <div class="menu-grid">
+        <div class="menu-card" onclick="navigateTo('materi')">
+          <div>
+            <div class="menu-icon-box" style="background:rgba(139,92,246,0.22); color:#c4b5fd;">📘</div>
+            <h3>1. Menu Materi</h3>
+            <p>8 submateri lengkap dengan infografis, studi kasus SMK, audio narasi (TTS), refleksi, dan kuis singkat.</p>
+          </div>
+          <div class="menu-status">
+            <span id="status-materi">0/8 Submateri Selesai</span>
+            <span>Buka →</span>
+          </div>
+        </div>
+
+        <div class="menu-card" onclick="navigateTo('simulasi')">
+          <div>
+            <div class="menu-icon-box" style="background:rgba(20,184,166,0.22); color:#5eead4;">🚀</div>
+            <h3>2. Menu Simulasi</h3>
+            <p>“Jadilah Pengusaha Muda”: Simulasi peluang, SWOT, target pasar, harga jual, & kalkulator BEP otomatis.</p>
+          </div>
+          <div class="menu-status">
+            <span id="status-simulasi">Siap Disimulasikan</span>
+            <span>Buka →</span>
+          </div>
+        </div>
+
+        <div class="menu-card" onclick="navigateTo('praktikum')">
+          <div>
+            <div class="menu-icon-box" style="background:rgba(249,115,22,0.22); color:#fdba74;">🔍</div>
+            <h3>3. Menu Praktikum</h3>
+            <p>“Misi: Temukan Peluang Usaha di Sekitarmu!” — 8 tahapan riset lapangan & perancangan usaha siswa SMK.</p>
+          </div>
+          <div class="menu-status">
+            <span id="status-praktikum">Lembar Kerja Digital</span>
+            <span>Buka →</span>
+          </div>
+        </div>
+
+        <div class="menu-card" onclick="navigateTo('game')">
+          <div>
+            <div class="menu-icon-box" style="background:rgba(236,72,153,0.22); color:#f9a8d4;">🎮</div>
+            <h3>4. Menu Game Edukasi</h3>
+            <p>3 Game interaktif (Detektif Peluang, Tebak Strategi, Tantangan Pengusaha) dengan level, timer & badge.</p>
+          </div>
+          <div class="menu-status">
+            <span id="status-game">Skor Tertinggi: 0</span>
+            <span>Mainkan →</span>
+          </div>
+        </div>
+
+        <div class="menu-card" onclick="navigateTo('lkpd')">
+          <div>
+            <div class="menu-icon-box" style="background:rgba(59,130,246,0.22); color:#93c5fd;">📝</div>
+            <h3>5. Menu LKPD Digital</h3>
+            <p>Lembar Kerja Peserta Didik lengkap 11 bagian: simpan otomatis, cetak dokumen, & ekspor ke PDF.</p>
+          </div>
+          <div class="menu-status">
+            <span id="status-lkpd">Belum Diisi</span>
+            <span>Isi LKPD →</span>
+          </div>
+        </div>
+
+        <div class="menu-card" onclick="navigateTo('evaluasi')">
+          <div>
+            <div class="menu-icon-box" style="background:rgba(16,185,129,0.22); color:#6ee7b7;">🎯</div>
+            <h3>6. Menu Evaluasi</h3>
+            <p>15 Pilihan Ganda, 5 Benar/Salah, & 3 Studi Kasus dengan acak soal, pembahasan, KKM guru, & rekomendasi.</p>
+          </div>
+          <div class="menu-status">
+            <span id="status-evaluasi">Belum Dikerjakan</span>
+            <span>Mulai Tes →</span>
+          </div>
+        </div>
+
+        <div class="menu-card" onclick="navigateTo('pengembang')">
+          <div>
+            <div class="menu-icon-box" style="background:rgba(234,179,8,0.22); color:#fde047;">👩‍🏫</div>
+            <h3>7. Menu Pengembang</h3>
+            <p>Profil pengembang Endang Lestari (SMK PERINTIS Adiluhur), deskripsi MPI, referensi Kurikulum Merdeka.</p>
+          </div>
+          <div class="menu-status">
+            <span>Info & Referensi</span>
+            <span>Lihat →</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         VIEW 1: MENU MATERI PEMBELAJARAN INTERAKTIF
+         ======================================================================== -->
+    <section id="view-materi" class="view-section">
+      <div class="section-header">
+        <div>
+          <span class="badge-tag tag-purple">Modul Pembelajaran Interaktif</span>
+          <h2 class="section-title">📘 Materi: Peluang Usaha</h2>
+        </div>
+        <button class="btn btn-glass btn-sm" onclick="navigateTo('dashboard')">← Kembali ke Beranda</button>
+      </div>
+
+      <div class="materi-layout">
+        <!-- Sidebar Submateri -->
+        <aside class="glass-card" style="height:fit-content;">
+          <h3 style="font-size:1rem; margin-bottom:12px; color:#c4b5fd;">Daftar Submateri (8)</h3>
+          <div class="submateri-list" id="submateriList"></div>
+        </aside>
+
+        <!-- Konten Submateri Aktif -->
+        <article class="glass-card" id="materiContentArea">
+          <!-- Diisi dinamis oleh JS -->
+        </article>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         VIEW 2: MENU SIMULASI ("JADILAH PENGUSAHA MUDA")
+         ======================================================================== -->
+    <section id="view-simulasi" class="view-section">
+      <div class="section-header">
+        <div>
+          <span class="badge-tag tag-teal">Laboratorium Bisnis Interaktif</span>
+          <h2 class="section-title">🚀 JADILAH PENGUSAHA MUDA</h2>
+        </div>
+        <button class="btn btn-glass btn-sm" onclick="navigateTo('dashboard')">← Kembali ke Beranda</button>
+      </div>
+
+      <div class="sim-tabs">
+        <button class="btn btn-purple btn-sm sim-tab-btn active" onclick="switchSimTab('A', this)">A. Menemukan Peluang</button>
+        <button class="btn btn-glass btn-sm sim-tab-btn" onclick="switchSimTab('B', this)">B. Analisis SWOT</button>
+        <button class="btn btn-glass btn-sm sim-tab-btn" onclick="switchSimTab('C', this)">C. Target Pasar</button>
+        <button class="btn btn-glass btn-sm sim-tab-btn" onclick="switchSimTab('D', this)">D. Perhitungan Modal</button>
+        <button class="btn btn-glass btn-sm sim-tab-btn" onclick="switchSimTab('E', this)">E. Harga Jual</button>
+        <button class="btn btn-orange btn-sm sim-tab-btn" onclick="switchSimTab('F', this)">F. Keuntungan & Kalkulator BEP</button>
+      </div>
+
+      <!-- SIMULASI A -->
+      <div id="sim-panel-A" class="glass-card sim-panel">
+        <h3 style="color:#5eead4; margin-bottom:8px;">Simulasi A: Menemukan Peluang Usaha dari Masalah Lingkungan</h3>
+        <p style="color:var(--text-muted); margin-bottom:16px;">Pilih kondisi lingkungan sekolah atau masyarakat sekitar untuk melihat rekomendasi peluang usaha yang relevan bagi siswa SMK:</p>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Pilih Lokasi / Lingkungan Pengamatan:</label>
+            <select id="simEnvSelect" onchange="runSimA()">
+              <option value="sekolah">Area Sekolah & Kantin SMK</option>
+              <option value="perumahan">Kompleks Perumahan Padat Penduduk</option>
+              <option value="umkm">Sentra UMKM & Toko Lokal</option>
+              <option value="kampus">Kawasan Kos Pelajar / Mahasiswa</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Pilih Masalah Utama yang Ditemukan:</label>
+            <select id="simProbSelect" onchange="runSimA()">
+              <option value="antre">Siswa sering terlambat karena antre sarapan/minuman</option>
+              <option value="promosi">Banyak toko bagus tetapi sepi karena tidak punya konten promosi digital</option>
+              <option value="gadget">Banyak perangkat elektronik/motor siswa butuh perawatan ringan cepat</option>
+              <option value="sampah">Limbah kain perca / plastik menumpuk belum dimanfaatkan</option>
+            </select>
+          </div>
+        </div>
+        <div id="simAResult" class="infographic-box"></div>
+      </div>
+
+      <!-- SIMULASI B -->
+      <div id="sim-panel-B" class="glass-card sim-panel" style="display:none;">
+        <h3 style="color:#c4b5fd; margin-bottom:8px;">Simulasi B: Skor Kelayakan Analisis SWOT Interaktif</h3>
+        <p style="color:var(--text-muted); margin-bottom:16px;">Berikan penilaian (skala 1–10) terhadap ide usahamu saat ini untuk mendapatkan rekomendasi strategi otomatis:</p>
+        <div class="swot-grid">
+          <div class="swot-box swot-s">
+            <label><strong>Strength (Kekuatan Internal):</strong> <span id="valS">8</span>/10</label>
+            <input type="range" min="1" max="10" value="8" oninput="document.getElementById('valS').textContent=this.value; runSimB();" id="rangeS">
+            <small>Contoh: Keahlian praktik SMK, resep unik, bahan baku mudah.</small>
+          </div>
+          <div class="swot-box swot-w">
+            <label><strong>Weakness (Kelemahan Internal):</strong> <span id="valW">4</span>/10</label>
+            <input type="range" min="1" max="10" value="4" oninput="document.getElementById('valW').textContent=this.value; runSimB();" id="rangeW">
+            <small>Contoh: Modal terbatas, belum punya merek terkenal.</small>
+          </div>
+          <div class="swot-box swot-o">
+            <label><strong>Opportunity (Peluang Eksternal):</strong> <span id="valO">8</span>/10</label>
+            <input type="range" min="1" max="10" value="8" oninput="document.getElementById('valO').textContent=this.value; runSimB();" id="rangeO">
+            <small>Contoh: Tren media sosial, daya beli teman sekolah tinggi.</small>
+          </div>
+          <div class="swot-box swot-t">
+            <label><strong>Threat (Ancaman Eksternal):</strong> <span id="valT">5</span>/10</label>
+            <input type="range" min="1" max="10" value="5" oninput="document.getElementById('valT').textContent=this.value; runSimB();" id="rangeT">
+            <small>Contoh: Pesaing meniru produk, kenaikan harga bahan.</small>
+          </div>
+        </div>
+        <div id="simBResult" class="infographic-box" style="margin-top:16px;"></div>
+      </div>
+
+      <!-- SIMULASI C -->
+      <div id="sim-panel-C" class="glass-card sim-panel" style="display:none;">
+        <h3 style="color:#5eead4; margin-bottom:8px;">Simulasi C: Menentukan Target Pasar (STP)</h3>
+        <p style="color:var(--text-muted); margin-bottom:16px;">Rancang profil konsumen utamamu agar strategi pemasaran tepat sasaran:</p>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Segmen Usia Utama:</label>
+            <select id="simAge" onchange="runSimC()">
+              <option value="Pelajar SMK/SMA (15–18 tahun)">Pelajar SMK/SMA (15–18 tahun)</option>
+              <option value="Mahasiswa & Dewasa Muda (19–25 tahun)">Mahasiswa & Dewasa Muda (19–25 tahun)</option>
+              <option value="Keluarga & Pekerja (26–45 tahun)">Keluarga & Pekerja (26–45 tahun)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Daya Beli / Uang Saku:</label>
+            <select id="simIncome" onchange="runSimC()">
+              <option value="Ekonomis (Rp5.000 – Rp15.000)">Ekonomis (Rp5.000 – Rp15.000)</option>
+              <option value="Menengah (Rp15.000 – Rp50.000)">Menengah (Rp15.000 – Rp50.000)</option>
+              <option value="Premium (> Rp50.000)">Premium (&gt; Rp50.000)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Kebiasaan Belanja Konsumen:</label>
+            <select id="simHabit" onchange="runSimC()">
+              <option value="Suka promo bundel & pesan lewat WhatsApp/Instagram">Suka promo bundel & pesan lewat WhatsApp/Instagram</option>
+              <option value="Membeli langsung saat jam istirahat / pulang sekolah">Membeli langsung saat jam istirahat / pulang sekolah</option>
+              <option value="Mengutamakan kualitas, garansi, & ulasan pelanggan">Mengutamakan kualitas, garansi, & ulasan pelanggan</option>
+            </select>
+          </div>
+        </div>
+        <div id="simCResult" class="infographic-box"></div>
+      </div>
+
+      <!-- SIMULASI D -->
+      <div id="sim-panel-D" class="glass-card sim-panel" style="display:none;">
+        <h3 style="color:#fdba74; margin-bottom:8px;">Simulasi D: Rincian Kebutuhan Modal Usaha Awal</h3>
+        <p style="color:var(--text-muted); margin-bottom:16px;">Hitung kebutuhan modal investasi alat dan modal kerja awal:</p>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Biaya Peralatan & Perlengkapan (Rp):</label>
+            <input type="number" id="modAlat" value="250000" min="0" step="10000" oninput="runSimD()">
+          </div>
+          <div class="form-group">
+            <label>Biaya Bahan Baku Awal (Rp):</label>
+            <input type="number" id="modBahan" value="150000" min="0" step="10000" oninput="runSimD()">
+          </div>
+          <div class="form-group">
+            <label>Biaya Kemasan & Promosi Awal (Rp):</label>
+            <input type="number" id="modKemasan" value="100000" min="0" step="10000" oninput="runSimD()">
+          </div>
+        </div>
+        <div id="simDResult" class="infographic-box"></div>
+      </div>
+
+      <!-- SIMULASI E -->
+      <div id="sim-panel-E" class="glass-card sim-panel" style="display:none;">
+        <h3 style="color:#c4b5fd; margin-bottom:8px;">Simulasi E: Strategi Penentuan Harga Jual (Cost-Plus Pricing)</h3>
+        <p style="color:var(--text-muted); margin-bottom:16px;">Tentukan harga jual ideal berdasarkan Harga Pokok Produksi (HPP) dan margin keuntungan yang diinginkan:</p>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>HPP / Biaya Produksi per Produk (Rp):</label>
+            <input type="number" id="priceHpp" value="5000" min="100" step="500" oninput="runSimE()">
+          </div>
+          <div class="form-group">
+            <label>Target Margin Keuntungan (%):</label>
+            <input type="number" id="priceMargin" value="100" min="5" max="500" step="5" oninput="runSimE()">
+          </div>
+          <div class="form-group">
+            <label>Harga Rata-Rata Pesaing (Rp):</label>
+            <input type="number" id="priceComp" value="11000" min="100" step="500" oninput="runSimE()">
+          </div>
+        </div>
+        <div id="simEResult" class="infographic-box"></div>
+      </div>
+
+      <!-- SIMULASI F (KALKULATOR BISNIS UTAMA SESUAI SPESIFIKASI) -->
+      <div id="sim-panel-F" class="glass-card sim-panel" style="display:none;">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:12px;">
+          <div>
+            <h3 style="color:#fdba74;">Simulasi F: Kalkulator Bisnis, Keuntungan & BEP</h3>
+            <p style="font-size:0.88rem; color:var(--text-muted);">Studi Kasus Default: Bisnis Minuman Kekinian Siswa SMK</p>
+          </div>
+          <button class="btn btn-glass btn-sm" onclick="resetSimF()">🔄 Reset ke Contoh Kasus Minuman Kekinian</button>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Modal Awal Usaha (Rp):</label>
+            <input type="number" id="calcModalAwal" value="500000" min="0" step="10000" oninput="calculateBusiness()">
+          </div>
+          <div class="form-group">
+            <label>Biaya Tetap / Fixed Cost (Rp):</label>
+            <input type="number" id="calcFixedCost" value="50000" min="0" step="5000" oninput="calculateBusiness()">
+            <small style="color:var(--text-dim);">Misal: sewa lapak/kuota/penyusutan alat per periode</small>
+          </div>
+          <div class="form-group">
+            <label>Biaya Variabel per Produk (Rp):</label>
+            <input type="number" id="calcVarCost" value="5000" min="0" step="500" oninput="calculateBusiness()">
+            <small style="color:var(--text-dim);">Contoh kasus: Rp5.000 / gelas</small>
+          </div>
+          <div class="form-group">
+            <label>Harga Jual per Produk (Rp):</label>
+            <input type="number" id="calcPrice" value="10000" min="0" step="500" oninput="calculateBusiness()">
+            <small style="color:var(--text-dim);">Contoh kasus: Rp10.000 / gelas</small>
+          </div>
+          <div class="form-group">
+            <label>Jumlah Produk Terjual (Unit/Gelas):</label>
+            <input type="number" id="calcQty" value="30" min="0" step="1" oninput="calculateBusiness()">
+            <small style="color:var(--text-dim);">Contoh kasus: 30 gelas per hari</small>
+          </div>
+        </div>
+
+        <!-- HASIL OTOMATIS -->
+        <div class="metric-grid">
+          <div class="metric-card">
+            <div class="m-label">Total Omzet (Pendapatan)</div>
+            <div class="m-val" id="resOmzet">Rp300.000</div>
+          </div>
+          <div class="metric-card">
+            <div class="m-label">Total Biaya (Tetap + Variabel)</div>
+            <div class="m-val" id="resTotalCost" style="color:#fbbf24;">Rp200.000</div>
+          </div>
+          <div class="metric-card">
+            <div class="m-label">Laba / Rugi Bersih</div>
+            <div class="m-val" id="resProfit" style="color:#10b981;">+Rp100.000</div>
+          </div>
+          <div class="metric-card">
+            <div class="m-label">BEP (Titik Impas Unit)</div>
+            <div class="m-val" id="resBepUnit" style="color:#c4b5fd;">10 Unit</div>
+          </div>
+          <div class="metric-card">
+            <div class="m-label">Estimasi Balik Modal Awal</div>
+            <div class="m-val" id="resPayback" style="color:#38bdf8;">5 Hari</div>
+          </div>
+        </div>
+
+        <div id="calcExplanation" class="infographic-box"></div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         VIEW 3: MENU PRAKTIKUM
+         ======================================================================== -->
+    <section id="view-praktikum" class="view-section">
+      <div class="section-header">
+        <div>
+          <span class="badge-tag tag-orange">Riset Lapangan & Ideasi</span>
+          <h2 class="section-title">🔍 MISI: TEMUKAN PELUANG USAHA DI SEKITARMU!</h2>
+        </div>
+        <button class="btn btn-glass btn-sm" onclick="navigateTo('dashboard')">← Kembali ke Beranda</button>
+      </div>
+
+      <!-- Inspirasi Ide Usaha SMK -->
+      <div class="glass-card" style="margin-bottom:20px;">
+        <h3 style="margin-bottom:10px; color:#5eead4;">💡 Bank Inspirasi Ide Usaha Siswa SMK (Klik untuk Mengisi Contoh)</h3>
+        <div style="display:flex; flex-wrap:wrap; gap:8px;">
+          <button class="btn btn-glass btn-sm" onclick="fillPraktikumTemplate('fnb')">🥤 Makanan & Minuman Kekinian</button>
+          <button class="btn btn-glass btn-sm" onclick="fillPraktikumTemplate('craft')">🧶 Produk Kerajinan & Daur Ulang</button>
+          <button class="btn btn-glass btn-sm" onclick="fillPraktikumTemplate('design')">🎨 Jasa Desain Grafis & Konten</button>
+          <button class="btn btn-glass btn-sm" onclick="fillPraktikumTemplate('photo')">📸 Jasa Fotografi & Videografi</button>
+          <button class="btn btn-glass btn-sm" onclick="fillPraktikumTemplate('digital')">💻 Produk Digital (Template/Preset)</button>
+          <button class="btn btn-glass btn-sm" onclick="fillPraktikumTemplate('tech')">⚙️ Usaha Berbasis Teknologi & Jurusan SMK</button>
+        </div>
+      </div>
+
+      <div class="glass-card">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Nama Siswa / Kelompok:</label>
+            <input type="text" id="prakNama" placeholder="Contoh: Raka Pratama / Kelompok 1">
+          </div>
+          <div class="form-group">
+            <label>Kompetensi Keahlian / Jurusan SMK:</label>
+            <input type="text" id="prakJurusan" placeholder="Contoh: TKJ / DKV / Akuntansi / Kuliner / TKR">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Tahap 1: Lokasi & Hasil Pengamatan Lingkungan Sekitar</label>
+          <textarea id="prak1" placeholder="Tuliskan lokasi pengamatan (sekolah, lingkungan rumah, pasar, media sosial) dan aktivitas masyarakat yang kamu amati..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Tahap 2: Temukan Minimal Tiga (3) Masalah atau Kebutuhan Masyarakat</label>
+          <textarea id="prak2" placeholder="1. Masalah pertama...&#10;2. Masalah kedua...&#10;3. Masalah ketiga..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Tahap 3: Identifikasi Peluang Usaha dari Ketiga Masalah Tersebut</label>
+          <textarea id="prak3" placeholder="Tuliskan solusi usaha yang muncul dari setiap masalah di atas..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Tahap 4: Pilih Satu (1) Peluang Usaha Terbaik & Alasan Pemilihannya</label>
+          <textarea id="prak4" placeholder="Sebutkan nama ide usaha terpilih dan mengapa ide ini paling realistis dijalankan siswa SMK..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Tahap 5: Analisis SWOT Peluang Usaha Terpilih</label>
+          <div class="swot-grid">
+            <div class="swot-box swot-s">
+              <label>Strength (Kekuatan)</label>
+              <textarea id="prakSwotS" placeholder="Keunggulan produk/jasamu..."></textarea>
+            </div>
+            <div class="swot-box swot-w">
+              <label>Weakness (Kelemahan)</label>
+              <textarea id="prakSwotW" placeholder="Keterbatasan yang dimiliki..."></textarea>
+            </div>
+            <div class="swot-box swot-o">
+              <label>Opportunity (Peluang)</label>
+              <textarea id="prakSwotO" placeholder="Dukungan pasar/tren sekitar..."></textarea>
+            </div>
+            <div class="swot-box swot-t">
+              <label>Threat (Ancaman)</label>
+              <textarea id="prakSwotT" placeholder="Tantangan/pesaing luar..."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Tahap 6: Penentuan Target Pasar</label>
+            <textarea id="prak6" placeholder="Siapa pembeli utamamu? (Usia, profesi, lokasi, daya beli)"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Tahap 7: Rancangan Produk atau Jasa (Keunikan & Kemasan/Layanan)</label>
+            <textarea id="prak7" placeholder="Jelaskan fitur produk, keunikan nilai jual (USP), dan estimasi harga..."></textarea>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Tahap 8: Kesimpulan Kelayakan Peluang Usaha</label>
+          <textarea id="prak8" placeholder="Simpulkan apakah peluang usaha ini layak dijalankan dan langkah awal apa yang akan dilakukan..."></textarea>
+        </div>
+
+        <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:14px;">
+          <button class="btn btn-teal" onclick="savePraktikum()">💾 Simpan Hasil Praktikum</button>
+          <button class="btn btn-purple" onclick="copyPraktikumToLKPD()">📋 Salin Otomatis ke LKPD Digital</button>
+          <button class="btn btn-danger" onclick="confirmResetPraktikum()">🗑️ Reset Isian</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         VIEW 4: MENU GAME EDUKASI (3 GAME INTERAKTIF)
+         ======================================================================== -->
+    <section id="view-game" class="view-section">
+      <div class="section-header">
+        <div>
+          <span class="badge-tag tag-purple">Gamifikasi Kewirausahaan</span>
+          <h2 class="section-title">🎮 Arena Game Edukasi Bisnis</h2>
+        </div>
+        <button class="btn btn-glass btn-sm" onclick="navigateTo('dashboard')">← Kembali ke Beranda</button>
+      </div>
+
+      <!-- Skor & Badge Summary -->
+      <div class="glass-card" style="margin-bottom:20px; display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:14px;">
+        <div>
+          <div style="font-size:0.85rem; color:var(--text-dim);">Total Poin Penghargaan Kamu:</div>
+          <div style="font-size:1.7rem; font-weight:900; color:#facc15;" id="totalGamePoints">0 Poin</div>
+          <div class="badge-showcase" id="gameBadgesList">
+            <span style="font-size:0.82rem; color:var(--text-dim);">Belum ada badge. Selesaikan game untuk meraih badge!</span>
+          </div>
+        </div>
+
+        <div>
+          <label style="font-size:0.82rem; display:block; margin-bottom:6px; color:var(--text-muted);">Pilih Tingkat Kesulitan:</label>
+          <div style="display:flex; gap:6px;">
+            <button class="btn btn-teal btn-sm diff-btn active" data-diff="mudah" onclick="setGameDifficulty('mudah', this)">Mudah (25d)</button>
+            <button class="btn btn-glass btn-sm diff-btn" data-diff="sedang" onclick="setGameDifficulty('sedang', this)">Sedang (18d)</button>
+            <button class="btn btn-glass btn-sm diff-btn" data-diff="sulit" onclick="setGameDifficulty('sulit', this)">Sulit (12d)</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pilihan 3 Game -->
+      <div class="menu-grid" style="margin-bottom:22px;">
+        <div class="menu-card" onclick="startGame(1)">
+          <div>
+            <div class="menu-icon-box" style="background:rgba(20,184,166,0.22); color:#5eead4;">🕵️</div>
+            <h3>GAME 1: Detektif Peluang Usaha</h3>
+            <p>Analisis ilustrasi & masalah sehari-hari di sekitar siswa SMK, lalu pilih peluang usaha yang paling tepat!</p>
+          </div>
+          <button class="btn btn-teal btn-sm">▶️ Mainkan Game 1</button>
+        </div>
+
+        <div class="menu-card" onclick="startGame(2)">
+          <div>
+            <div class="menu-icon-box" style="background:rgba(139,92,246,0.22); color:#c4b5fd;">♟️</div>
+            <h3>GAME 2: Tebak Strategi Bisnis</h3>
+            <p>Hadapi situasi persaingan pasar, keluhan pelanggan, & SWOT untuk menentukan keputusan bisnis terbaik!</p>
+          </div>
+          <button class="btn btn-purple btn-sm">▶️ Mainkan Game 2</button>
+        </div>
+
+        <div class="menu-card" onclick="startGame(3)">
+          <div>
+            <div class="menu-icon-box" style="background:rgba(249,115,22,0.22); color:#fdba74;">🏆</div>
+            <h3>GAME 3: Tantangan Pengusaha Muda</h3>
+            <p>Kelola modal Rp500.000 dan ambil keputusan krusial agar tokomu meraih profit maksimal!</p>
+          </div>
+          <button class="btn btn-orange btn-sm">▶️ Mainkan Game 3</button>
+        </div>
+      </div>
+
+      <!-- Arena Bermain -->
+      <div class="game-arena" id="gameArena">
+        <div style="text-align:center; padding:26px 10px;">
+          <div style="font-size:2.5rem; margin-bottom:8px;">🎯</div>
+          <h3>Pilih salah satu dari 3 Game di atas untuk mulai bermain!</h3>
+          <p style="color:var(--text-muted); font-size:0.9rem;">Jawab cepat dan tepat sebelum waktu habis untuk meraih poin bonus & badge eksklusif.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         VIEW 5: MENU LKPD DIGITAL
+         ======================================================================== -->
+    <section id="view-lkpd" class="view-section">
+      <div class="section-header no-print">
+        <div>
+          <span class="badge-tag tag-teal">Lembar Kerja Peserta Didik</span>
+          <h2 class="section-title">📝 LKPD DIGITAL INTERAKTIF</h2>
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:8px;">
+          <button class="btn btn-teal btn-sm" onclick="saveLKPD()">💾 Simpan Pekerjaan</button>
+          <button class="btn btn-purple btn-sm" onclick="printLKPD()">🖨️ Cetak / Unduh PDF</button>
+          <button class="btn btn-danger btn-sm" onclick="confirmResetLKPD()">🗑️ Reset Isian</button>
+          <button class="btn btn-glass btn-sm" onclick="navigateTo('dashboard')">← Beranda</button>
+        </div>
+      </div>
+
+      <div class="glass-card" id="lkpdPrintableArea">
+        <div style="text-align:center; border-bottom:2px solid var(--teal-accent); padding-bottom:14px; margin-bottom:20px;">
+          <div style="font-size:0.85rem; font-weight:700; color:var(--teal-accent);">SMK PERINTIS ADILUHUR • MATA PELAJARAN KREATIVITAS, INOVASI, DAN KEWIRAUSAHAAN</div>
+          <h3 style="font-size:1.3rem; margin-top:4px;">LEMBAR KERJA PESERTA DIDIK: ANALISIS DAN PERANCANGAN PELUANG USAHA</h3>
+        </div>
+
+        <!-- 1. Identitas Siswa -->
+        <h4 style="color:#c4b5fd; margin-bottom:10px;">1. Identitas Peserta Didik</h4>
+        <div class="form-grid" style="margin-bottom:18px;">
+          <div class="form-group">
+            <label>Nama Lengkap Siswa:</label>
+            <input type="text" id="lkpdNama" placeholder="Masukkan nama lengkap...">
+          </div>
+          <div class="form-group">
+            <label>Kelas / Kompetensi Keahlian:</label>
+            <input type="text" id="lkpdKelas" placeholder="Contoh: XII DKV 1">
+          </div>
+          <div class="form-group">
+            <label>Nama Kelompok (Opsional):</label>
+            <input type="text" id="lkpdKelompok" placeholder="Contoh: Kelompok Inovator Muda">
+          </div>
+          <div class="form-group">
+            <label>Tanggal Pengerjaan:</label>
+            <input type="text" id="lkpdTanggal" placeholder="Contoh: 15 November 2026">
+          </div>
+        </div>
+
+        <!-- 2 & 3. Tujuan & Petunjuk -->
+        <div class="infographic-box" style="margin-bottom:18px;">
+          <h4 style="color:#5eead4; margin-bottom:6px;">2. Tujuan Pembelajaran</h4>
+          <p style="font-size:0.88rem; margin-bottom:10px;">Peserta didik mampu mengidentifikasi masalah konsumen, menganalisis peluang usaha menggunakan SWOT, menentukan target pasar, dan merancang produk/jasa inovatif bernilai jual.</p>
+          <h4 style="color:#fdba74; margin-bottom:6px;">3. Petunjuk Pengerjaan</h4>
+          <ol style="font-size:0.86rem; padding-left:20px; color:var(--text-muted);">
+            <li>Bacalah studi kasus di bawah ini dengan saksama atau gunakan hasil observasi praktikum lapanganmu.</li>
+            <li>Isilah setiap tabel dan kolom analisis secara lengkap, logis, dan kreatif.</li>
+            <li>Klik tombol <strong>Simpan Pekerjaan</strong> agar data tersimpan otomatis di perangkat, lalu klik <strong>Cetak / Unduh PDF</strong> untuk dikumpulkan kepada guru.</li>
+          </ol>
+        </div>
+
+        <!-- 4. Studi Kasus -->
+        <div class="case-box" style="margin-bottom:18px;">
+          <h4 style="color:#fdba74; margin-bottom:6px;">4. Studi Kasus Pemantik</h4>
+          <p style="font-size:0.9rem;">
+            Di lingkungan sekitar <strong>SMK PERINTIS Adiluhur</strong>, terdapat lebih dari 800 siswa dan guru yang beraktivitas dari pagi hingga sore. Saat jam istirahat dan pulang sekolah, banyak siswa membutuhkan makanan/minuman sehat yang cepat saji, jasa cetak/desain tugas sekolah mendadak, serta aksesori gawai dengan harga pelajar. Namun, pilihan di sekitar sekolah masih terbatas dan belum memanfaatkan pemesanan digital (pre-order WhatsApp/Instagram).
+          </p>
+        </div>
+
+        <!-- 5 & 6. Tabel Identifikasi Masalah & Peluang -->
+        <h4 style="color:#c4b5fd; margin-bottom:8px;">5. Identifikasi Masalah & Kebutuhan Konsumen serta 6. Peluang Usaha</h4>
+        <div style="overflow-x:auto;">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th style="width:5%;">No</th>
+                <th style="width:30%;">Masalah / Kebutuhan Konsumen</th>
+                <th style="width:35%;">Peluang Usaha yang Dapat Dibuat</th>
+                <th style="width:30%;">Nilai Tambah / Inovasi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td><textarea id="lkpdM1" placeholder="Tuliskan masalah 1..."></textarea></td>
+                <td><textarea id="lkpdP1" placeholder="Solusi usaha 1..."></textarea></td>
+                <td><textarea id="lkpdI1" placeholder="Keunikan inovasi 1..."></textarea></td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td><textarea id="lkpdM2" placeholder="Tuliskan masalah 2..."></textarea></td>
+                <td><textarea id="lkpdP2" placeholder="Solusi usaha 2..."></textarea></td>
+                <td><textarea id="lkpdI2" placeholder="Keunikan inovasi 2..."></textarea></td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td><textarea id="lkpdM3" placeholder="Tuliskan masalah 3..."></textarea></td>
+                <td><textarea id="lkpdP3" placeholder="Solusi usaha 3..."></textarea></td>
+                <td><textarea id="lkpdI3" placeholder="Keunikan inovasi 3..."></textarea></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 7. Analisis SWOT -->
+        <h4 style="color:#c4b5fd; margin:16px 0 8px;">7. Analisis SWOT Usaha Pilihan Utama</h4>
+        <div class="swot-grid" style="margin-bottom:18px;">
+          <div class="swot-box swot-s">
+            <label><strong>S — Strength (Kekuatan):</strong></label>
+            <textarea id="lkpdSwotS" placeholder="Faktor kekuatan internal usaha..."></textarea>
+          </div>
+          <div class="swot-box swot-w">
+            <label><strong>W — Weakness (Kelemahan):</strong></label>
+            <textarea id="lkpdSwotW" placeholder="Faktor kelemahan internal usaha..."></textarea>
+          </div>
+          <div class="swot-box swot-o">
+            <label><strong>O — Opportunity (Peluang):</strong></label>
+            <textarea id="lkpdSwotO" placeholder="Faktor peluang eksternal..."></textarea>
+          </div>
+          <div class="swot-box swot-t">
+            <label><strong>T — Threat (Ancaman):</strong></label>
+            <textarea id="lkpdSwotT" placeholder="Faktor ancaman eksternal..."></textarea>
+          </div>
+        </div>
+
+        <!-- 8 & 9. Target Pasar & Rancangan Produk -->
+        <div class="form-grid" style="margin-bottom:16px;">
+          <div class="form-group">
+            <label><strong style="color:#5eead4;">8. Penentuan Target Pasar (Segmentasi, Target, Posisi):</strong></label>
+            <textarea id="lkpdTarget" placeholder="Jelaskan karakteristik konsumen sasaran (usia, kebiasaan, daya beli, lokasi)..."></textarea>
+          </div>
+          <div class="form-group">
+            <label><strong style="color:#5eead4;">9. Rancangan Produk atau Jasa (Nama Merek, Fitur, Kemasan, Harga):</strong></label>
+            <textarea id="lkpdProduk" placeholder="Deskripsikan rancangan produk/jasamu secara detail..."></textarea>
+          </div>
+        </div>
+
+        <!-- 10 & 11. Kesimpulan & Refleksi -->
+        <div class="form-grid">
+          <div class="form-group">
+            <label><strong style="color:#fdba74;">10. Kesimpulan Kelayakan Usaha:</strong></label>
+            <textarea id="lkpdKesimpulan" placeholder="Tuliskan kesimpulan dari analisis peluang usahamu..."></textarea>
+          </div>
+          <div class="form-group">
+            <label><strong style="color:#fdba74;">11. Refleksi Pembelajaran:</strong></label>
+            <textarea id="lkpdRefleksi" placeholder="Hal baru apa yang kamu pelajari hari ini dan keterampilan wirausaha apa yang meningkat?"></textarea>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         VIEW 6: MENU EVALUASI PEMBELAJARAN
+         ======================================================================== -->
+    <section id="view-evaluasi" class="view-section">
+      <div class="section-header">
+        <div>
+          <span class="badge-tag tag-purple">Asesmen Sumatif • Skala 0–100</span>
+          <h2 class="section-title">🎯 Evaluasi Pembelajaran Peluang Usaha</h2>
+        </div>
+        <button class="btn btn-glass btn-sm" onclick="navigateTo('dashboard')">← Kembali ke Beranda</button>
+      </div>
+
+      <!-- Setup Screen Evaluasi -->
+      <div class="glass-card" id="evalSetupBox">
+        <h3 style="margin-bottom:10px;">Pengaturan & Petunjuk Evaluasi</h3>
+        <p style="color:var(--text-muted); margin-bottom:16px;">
+          Evaluasi ini terdiri dari <strong>23 butir soal</strong> bervariasi (Mudah, Sedang, Sulit):
+          <br>• <strong>15 Soal Pilihan Ganda</strong> (Konsep, Sumber, Kebutuhan Konsumen, SWOT, Target Pasar, Kelayakan)
+          <br>• <strong>5 Soal Benar / Salah</strong> (Pemahaman Konsep & Strategi)
+          <br>• <strong>3 Soal Studi Kasus</strong> (Analisis Keputusan Bisnis Nyata)
+        </p>
+
+        <div class="form-grid" style="max-width:650px; margin-bottom:18px;">
+          <div class="form-group">
+            <label>Nama Peserta Didik (untuk Hasil & Sertifikat):</label>
+            <input type="text" id="evalStudentName" placeholder="Ketik nama lengkapmu...">
+          </div>
+          <div class="form-group">
+            <label>Batas Ketuntasan / KKM (Pengaturan Guru):</label>
+            <input type="number" id="evalKKM" value="75" min="50" max="100">
+          </div>
+        </div>
+
+        <div style="display:flex; flex-wrap:wrap; gap:10px;">
+          <button class="btn btn-orange btn-lg" onclick="startEvaluation(true)">🎲 Mulai Evaluasi (Urutan Soal Diacak)</button>
+          <button class="btn btn-glass" onclick="startEvaluation(false)">📋 Mulai Evaluasi (Urutan Berurut)</button>
+        </div>
+      </div>
+
+      <!-- Question Screen Evaluasi -->
+      <div class="glass-card" id="evalQuizBox" style="display:none;">
+        <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:10px; margin-bottom:14px;">
+          <div>
+            <span class="badge-tag tag-teal" id="evalQType">Pilihan Ganda</span>
+            <span class="badge-tag tag-orange" id="evalQDiff">Mudah</span>
+          </div>
+          <div style="font-weight:700;">Soal <span id="evalQIndex">1</span> dari <span id="evalQTotal">23</span></div>
+        </div>
+
+        <!-- Nomor Indikator Soal -->
+        <div id="evalNavDots" style="display:flex; flex-wrap:wrap; gap:5px; margin-bottom:18px;"></div>
+
+        <div id="evalQuestionText" style="font-size:1.08rem; font-weight:600; margin-bottom:18px; line-height:1.55;"></div>
+        <div id="evalOptionsArea"></div>
+        <div id="evalFeedbackArea" style="margin-top:14px;"></div>
+
+        <div style="display:flex; justify-content:space-between; margin-top:20px; padding-top:14px; border-top:1px solid var(--border-glass);">
+          <button class="btn btn-glass" id="evalPrevBtn" onclick="prevEvalQuestion()">← Sebelumnya</button>
+          <button class="btn btn-purple" id="evalNextBtn" onclick="nextEvalQuestion()">Berikutnya →</button>
+          <button class="btn btn-orange" id="evalFinishBtn" onclick="finishEvaluation()" style="display:none;">🏁 Selesai & Lihat Nilai</button>
+        </div>
+      </div>
+
+      <!-- Result Screen Evaluasi -->
+      <div class="glass-card" id="evalResultBox" style="display:none;"></div>
+    </section>
+
+    <!-- ========================================================================
+         VIEW 7: MENU PENGEMBANG
+         ======================================================================== -->
+    <section id="view-pengembang" class="view-section">
+      <div class="section-header">
+        <div>
+          <span class="badge-tag tag-teal">Informasi Aplikasi & Kurikulum</span>
+          <h2 class="section-title">👩‍🏫 Profil Pengembang MPI</h2>
+        </div>
+        <button class="btn btn-glass btn-sm" onclick="navigateTo('dashboard')">← Kembali ke Beranda</button>
+      </div>
+
+      <div class="hero-grid">
+        <div class="glass-card">
+          <div style="display:flex; align-items:center; gap:16px; margin-bottom:18px;">
+            <div style="width:72px; height:72px; border-radius:20px; background:linear-gradient(135deg, var(--purple-accent), var(--teal-accent)); display:grid; place-items:center; font-size:2rem; font-weight:800; flex-shrink:0;">
+              EL
+            </div>
+            <div>
+              <h3 style="font-size:1.35rem; color:#fff;">Endang Lestari</h3>
+              <p style="color:#5eead4; font-weight:600;">Guru Kreativitas, Inovasi, dan Kewirausahaan</p>
+              <p style="color:var(--text-dim); font-size:0.88rem;">SMK PERINTIS Adiluhur • Tahun 2026</p>
+            </div>
+          </div>
+
+          <table class="data-table">
+            <tr><th style="width:38%;">Nama Aplikasi</th><td>ENTREPRENEURSHIP LAB</td></tr>
+            <tr><th>Slogan</th><td><em>“Jelajahi Ide, Temukan Peluang, Bangun Usaha!”</em></td></tr>
+            <tr><th>Nama Pengembang</th><td>Endang Lestari</td></tr>
+            <tr><th>Instansi / Sekolah</th><td>SMK PERINTIS Adiluhur</td></tr>
+            <tr><th>Mata Pelajaran</th><td>Kreativitas, Inovasi, dan Kewirausahaan</td></tr>
+            <tr><th>Sasaran Peserta Didik</th><td>Kelas XII SMK — Fase F (Kurikulum Merdeka)</td></tr>
+            <tr><th>Pokok Bahasan</th><td>Peluang Usaha</td></tr>
+            <tr><th>Tahun Pengembangan</th><td>2026</td></tr>
+          </table>
+        </div>
+
+        <div class="glass-card">
+          <h3 style="color:#c4b5fd; margin-bottom:10px;">📌 Deskripsi & Tujuan Pengembangan MPI</h3>
+          <p style="color:var(--text-muted); font-size:0.92rem; margin-bottom:14px;">
+            <strong>ENTREPRENEURSHIP LAB</strong> dirancang sebagai ekosistem belajar mandiri dan kolaboratif bagi peserta didik SMK Kelas XII Fase F. Media ini menjembatani teori kewirausahaan dengan praktik analisis peluang usaha nyata melalui simulasi finansial, gamifikasi, riset lapangan, dan LKPD digital.
+          </p>
+
+          <h4 style="color:#5eead4; margin-bottom:8px;">📚 Sumber Referensi Materi</h4>
+          <ul style="color:var(--text-muted); font-size:0.88rem; padding-left:20px; margin-bottom:16px;">
+            <li>Keputusan Kepala BSKAP Kemendikbudristek tentang Capaian Pembelajaran Mata Pelajaran Projek Kreatif dan Kewirausahaan (Fase F SMK).</li>
+            <li>Osterwalder, A., & Pigneur, Y. <em>Business Model Generation</em>.</li>
+            <li>Ries, E. <em>The Lean Startup: How Today's Entrepreneurs Use Continuous Innovation</em>.</li>
+            <li>Modul Ajar Kewirausahaan SMK Kurikulum Merdeka — Direktorat SMK.</li>
+          </ul>
+
+          <div class="case-box">
+            <h4 style="color:#fdba74; margin-bottom:4px;">🙏 Ucapan Terima Kasih</h4>
+            <p style="font-size:0.88rem;">
+              Terima kasih kepada Keluarga Besar <strong>SMK PERINTIS Adiluhur</strong>, rekan-rekan pendidik vokasi, serta seluruh peserta didik hebat Kelas XII yang terus menyalakan semangat kreativitas, inovasi, dan kemandirian berwirausaha.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       JAVASCRIPT APPLICATION ENGINE (OFFLINE-READY, MODULAR, ZERO EXTERNAL DEPS)
+       ========================================================================== -->
+  <script>
+    /* ==========================================================================
+       1. STATE MANAGEMENT & LOCALSTORAGE PERSISTENCE
+       ========================================================================== */
+    const STORAGE_KEY = 'entrepreneurship_lab_v1_state';
+
+    const defaultState = {
+      completedMateri: [],
+      simulasiDone: false,
+      praktikum: {},
+      gameScore: 0,
+      gameBadges: [],
+      lkpd: {},
+      evalScore: null,
+      evalPassed: false,
+      studentName: ''
+    };
+
+    let appState = loadState();
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        return raw ? { ...defaultState, ...JSON.parse(raw) } : { ...defaultState };
+      } catch (e) {
+        return { ...defaultState };
+      }
+    }
+
+    function saveState() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+      } catch (e) {
+        // Fallback jika private browsing membatasi localStorage
+      }
+      updateGlobalProgress();
+    }
+
+    function updateGlobalProgress() {
+      // Bobot progres: Materi (35%), Simulasi (15%), Praktikum (15%), Game (15%), LKPD (10%), Evaluasi (10%)
+      let pct = 0;
+      pct += Math.round((appState.completedMateri.length / 8) * 35);
+      if (appState.simulasiDone) pct += 15;
+      if (appState.praktikum && appState.praktikum.prak4) pct += 15;
+      if (appState.gameScore > 0) pct += 15;
+      if (appState.lkpd && appState.lkpd.lkpdNama) pct += 10;
+      if (appState.evalScore !== null) pct += 10;
+      if (pct > 100) pct = 100;
+
+      document.getElementById('globalProgressText').textContent = pct + '%';
+      document.getElementById('globalProgressBar').style.width = pct + '%';
+
+      // Update Dashboard status labels
+      document.getElementById('status-materi').textContent = `${appState.completedMateri.length}/8 Submateri Selesai`;
+      document.getElementById('status-simulasi').textContent = appState.simulasiDone ? 'Simulasi Dijalankan ✓' : 'Siap Disimulasikan';
+      document.getElementById('status-praktikum').textContent = (appState.praktikum && appState.praktikum.prak4) ? 'Tersimpan ✓' : 'Lembar Kerja Digital';
+      document.getElementById('status-game').textContent = `Poin: ${appState.gameScore}`;
+      document.getElementById('status-lkpd').textContent = (appState.lkpd && appState.lkpd.lkpdNama) ? 'Tersimpan ✓' : 'Belum Diisi';
+      document.getElementById('status-evaluasi').textContent = appState.evalScore !== null ? `Nilai: ${appState.evalScore}/100` : 'Belum Dikerjakan';
+
+      // Tampilkan tombol sertifikat jika progres >= 80% atau lulus evaluasi
+      if (pct >= 80 || appState.evalPassed) {
+        document.getElementById('certShortcutBtn').style.display = 'inline-flex';
+      }
+    }
+
+    /* ==========================================================================
+       2. WEB AUDIO API (SFX & INSTRUMENTAL BGM) + WEB SPEECH API (TTS id-ID)
+       ========================================================================== */
+    let audioCtx = null;
+    let bgmInterval = null;
+    let bgmPlaying = false;
+    let indonesianVoice = null;
+    let currentRate = 1.0;
+
+    function ensureAudioContext() {
+      if (!audioCtx) {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (AudioContextClass) audioCtx = new AudioContextClass();
+      }
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+    }
+
+    function playSFX(type) {
+      try {
+        ensureAudioContext();
+        if (!audioCtx) return;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        const now = audioCtx.currentTime;
+        if (type === 'click') {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(520, now);
+          osc.frequency.exponentialRampToValueAtTime(760, now + 0.06);
+          gain.gain.setValueAtTime(0.08, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.07);
+          osc.start(now);
+          osc.stop(now + 0.07);
+        } else if (type === 'correct') {
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(523.25, now); // C5
+          osc.frequency.setValueAtTime(659.25, now + 0.09); // E5
+          osc.frequency.setValueAtTime(783.99, now + 0.18); // G5
+          gain.gain.setValueAtTime(0.14, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.36);
+          osc.start(now);
+          osc.stop(now + 0.36);
+        } else if (type === 'wrong') {
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(220, now);
+          osc.frequency.linearRampToValueAtTime(145, now + 0.25);
+          gain.gain.setValueAtTime(0.1, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.28);
+          osc.start(now);
+          osc.stop(now + 0.28);
+        }
+      } catch (e) {}
+    }
+
+    // Soft ambient instrumental arpeggio synth (zero external audio files)
+    function toggleBGM() {
+      playSFX('click');
+      const btn = document.getElementById('bgmToggleBtn');
+      if (bgmPlaying) {
+        clearInterval(bgmInterval);
+        bgmPlaying = false;
+        btn.textContent = '🔇 Aktifkan';
+        btn.className = 'btn btn-orange btn-sm';
+        showToast('Musik latar instrumental dimatikan.');
+      } else {
+        ensureAudioContext();
+        const notes = [261.63, 329.63, 392.00, 493.88, 392.00, 329.63]; // Cmaj7 arpeggio
+        let step = 0;
+        bgmPlaying = true;
+        btn.textContent = '🔊 Aktif (Matikan)';
+        btn.className = 'btn btn-teal btn-sm';
+        showToast('Musik latar instrumental diaktifkan.');
+
+        bgmInterval = setInterval(() => {
+          if (!bgmPlaying || !audioCtx) return;
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(notes[step % notes.length], audioCtx.currentTime);
+          gain.gain.setValueAtTime(0.025, audioCtx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.0005, audioCtx.currentTime + 0.75);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start();
+          osc.stop(audioCtx.currentTime + 0.78);
+          step++;
+        }, 800);
+      }
+    }
+
+    // Web Speech API Initialization & Indonesian Voice Check
+    function initTTS() {
+      const notice = document.getElementById('ttsStatusNotice');
+      if (!('speechSynthesis' in window)) {
+        notice.style.background = 'rgba(239,68,68,0.2)';
+        notice.style.borderColor = '#ef4444';
+        notice.innerHTML = '⚠️ <strong>Perhatian:</strong> Browser Anda tidak mendukung Web Speech API untuk narasi suara.';
+        return;
+      }
+
+      function checkVoices() {
+        const voices = window.speechSynthesis.getVoices();
+        indonesianVoice = voices.find(v => v.lang && v.lang.toLowerCase().includes('id'));
+        if (indonesianVoice) {
+          notice.style.background = 'rgba(20,184,166,0.18)';
+          notice.style.borderColor = '#14b8a6';
+          notice.innerHTML = `✅ Suara Bahasa Indonesia aktif: <strong>${indonesianVoice.name}</strong>`;
+        } else if (voices.length > 0) {
+          notice.style.background = 'rgba(234,179,8,0.2)';
+          notice.style.borderColor = '#eab308';
+          notice.innerHTML = '⚠️ Suara khusus Bahasa Indonesia (id-ID) tidak terpasang di perangkat ini. Sistem akan menggunakan suara default browser.';
+        }
+      }
+
+      checkVoices();
+      window.speechSynthesis.onvoiceschanged = checkVoices;
+    }
+
+    function speakText(text) {
+      if (!('speechSynthesis' in window)) {
+        showToast('Browser tidak mendukung fitur Text-to-Speech.');
+        return;
+      }
+      window.speechSynthesis.cancel();
+      const cleanText = text.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+      const utterance = new SpeechSynthesisUtterance(cleanText);
+      utterance.lang = 'id-ID';
+      if (indonesianVoice) utterance.voice = indonesianVoice;
+      utterance.rate = currentRate;
+      utterance.pitch = 1.0;
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function pauseTTS() {
+      if ('speechSynthesis' in window && window.speechSynthesis.speaking) {
+        window.speechSynthesis.pause();
+        showToast('Narasi suara dijeda.');
+      }
+    }
+
+    function resumeTTS() {
+      if ('speechSynthesis' in window && window.speechSynthesis.paused) {
+        window.speechSynthesis.resume();
+        showToast('Narasi suara dilanjutkan.');
+      }
+    }
+
+    function stopTTS() {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        showToast('Narasi suara dihentikan.');
+      }
+    }
+
+    function updateTTSRate(val) {
+      currentRate = parseFloat(val);
+      document.getElementById('rateLabel').textContent = currentRate.toFixed(1) + 'x';
+    }
+
+    function playIntroNarration() {
+      speakText('Selamat datang di Entrepreneurship Lab! Jelajahi Ide, Temukan Peluang, Bangun Usaha! Media Pembelajaran Interaktif Kreativitas, Inovasi, dan Kewirausahaan kelas dua belas SMK Fase F, dikembangkan oleh Endang Lestari dari SMK Perintis Adiluhur.');
+    }
+
+    function playGuideNarration() {
+      speakText('Petunjuk penggunaan aplikasi: Gunakan tujuh menu utama di bagian atas. Mulai dari Menu Materi untuk mempelajari delapan submateri, Menu Simulasi untuk menghitung keuntungan dan titik impas, Menu Praktikum untuk riset lapangan, Menu Game Edukasi, LKPD Digital yang dapat dicetak, serta Menu Evaluasi untuk mengukur pemahamanmu.');
+    }
+
+    function toggleAudioPanel() {
+      playSFX('click');
+      document.getElementById('audioPanel').classList.toggle('open');
+    }
+
+    /* ==========================================================================
+       3. NAVIGATION & MODALS
+       ========================================================================== */
+    function navigateTo(viewId) {
+      playSFX('click');
+      document.querySelectorAll('.view-section').forEach(sec => sec.classList.remove('active'));
+      const target = document.getElementById('view-' + viewId);
+      if (target) target.classList.add('active');
+
+      document.querySelectorAll('.nav-tab').forEach(tab => {
+        tab.classList.toggle('active', tab.dataset.target === viewId);
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function startLearningJourney() {
+      playSFX('click');
+      playIntroNarration();
+      navigateTo('materi');
+      showToast('Selamat belajar! Narasi pembuka diaktifkan.');
+    }
+
+    function showToast(msg) {
+      const box = document.getElementById('toastBox');
+      box.innerHTML = msg;
+      box.style.display = 'block';
+      clearTimeout(window._toastTimer);
+      window._toastTimer = setTimeout(() => { box.style.display = 'none'; }, 3600);
+    }
+
+    function openModal(html) {
+      document.getElementById('modalContent').innerHTML = html;
+      document.getElementById('modalBackdrop').classList.add('open');
+    }
+
+    function closeModal() {
+      playSFX('click');
+      document.getElementById('modalBackdrop').classList.remove('open');
+    }
+
+    function openObjectivesModal() {
+      playSFX('click');
+      openModal(`
+        <h3 style="color:#5eead4; margin-bottom:12px;">🎯 Tujuan Pembelajaran (Fase F • Kelas XII SMK)</h3>
+        <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:10px;">Setelah menggunakan MPI <strong>ENTREPRENEURSHIP LAB</strong>, peserta didik diharapkan mampu:</p>
+        <ol style="padding-left:20px; font-size:0.9rem; line-height:1.65; margin-bottom:18px;">
+          <li>Menjelaskan konsep dan karakteristik peluang usaha.</li>
+          <li>Mengidentifikasi sumber peluang usaha di lingkungan sekitar.</li>
+          <li>Menganalisis peluang usaha berdasarkan kebutuhan konsumen.</li>
+          <li>Menggunakan analisis SWOT untuk menilai peluang usaha.</li>
+          <li>Menentukan target pasar dan ide usaha yang inovatif.</li>
+          <li>Melakukan simulasi perhitungan modal, biaya, omzet, keuntungan, dan BEP sederhana.</li>
+          <li>Menghasilkan rancangan peluang usaha yang kreatif dan memiliki nilai jual.</li>
+        </ol>
+        <button class="btn btn-orange" style="width:100%;" onclick="closeModal()">Siap Belajar!</button>
+      `);
+    }
+
+    function openHelpModal() {
+      playSFX('click');
+      openModal(`
+        <h3 style="color:#c4b5fd; margin-bottom:10px;">❓ Panduan Penggunaan ENTREPRENEURSHIP LAB</h3>
+        <ul style="padding-left:20px; font-size:0.88rem; color:var(--text-muted); line-height:1.65; margin-bottom:16px;">
+          <li><strong>Menu 1 (Materi):</strong> Pelajari 8 submateri, dengarkan narasi suara, dan kerjakan kuis singkat di setiap bagian untuk mencatat progres.</li>
+          <li><strong>Menu 2 (Simulasi):</strong> Ubah angka modal, harga jual, dan biaya pada kalkulator BEP untuk melihat kelayakan bisnis secara otomatis.</li>
+          <li><strong>Menu 3 (Praktikum):</strong> Isi 8 tahapan riset peluang usaha di sekitarmu dan salin hasilnya ke LKPD.</li>
+          <li><strong>Menu 4 (Game Edukasi):</strong> Pilih tingkat kesulitan, mainkan 3 game sebelum waktu habis, dan kumpulkan badge.</li>
+          <li><strong>Menu 5 (LKPD Digital):</strong> Isi lembar kerja, simpan di browser, lalu cetak/simpan sebagai PDF.</li>
+          <li><strong>Menu 6 (Evaluasi):</strong> Kerjakan 23 soal evaluasi untuk memperoleh nilai akhir dan sertifikat kelulusan.</li>
+        </ul>
+        <div style="display:flex; gap:8px;">
+          <button class="btn btn-purple" style="flex:1;" onclick="playGuideNarration()">🔊 Dengarkan Petunjuk</button>
+          <button class="btn btn-glass" onclick="closeModal()">Tutup</button>
+        </div>
+      `);
+    }
+
+    function openCertificateModal() {
+      playSFX('correct');
+      const nama = appState.studentName || document.getElementById('lkpdNama').value || 'Peserta Didik Hebat SMK';
+      openModal(`
+        <div class="certificate-frame" id="certPrintArea">
+          <div style="font-size:0.82rem; font-weight:800; letter-spacing:2px; color:#0f1c3f;">SERTIFIKAT KOMPETENSI PEMBELAJARAN</div>
+          <h2 style="font-size:1.55rem; color:#8b5cf6; margin:6px 0;">ENTREPRENEURSHIP LAB</h2>
+          <p style="font-size:0.85rem; color:#475569;">Diberikan kepada:</p>
+          <div style="font-size:1.45rem; font-weight:900; color:#0f1c3f; border-bottom:2px solid #f97316; display:inline-block; padding:4px 20px; margin:8px 0;">
+            ${nama}
+          </div>
+          <p style="font-size:0.86rem; color:#334155; margin:10px 0;">
+            Telah menyelesaikan pembelajaran interaktif <strong>Peluang Usaha</strong> pada Mata Pelajaran <em>Kreativitas, Inovasi, dan Kewirausahaan</em> (Kelas XII Fase F) dengan Nilai Evaluasi: <strong>${appState.evalScore ?? '-'}</strong>.
+          </p>
+          <div style="margin-top:16px; font-size:0.8rem; color:#475569;">
+            <strong>SMK PERINTIS Adiluhur • Tahun 2026</strong><br>
+            Pengembang & Guru Pengampu: <strong>Endang Lestari</strong>
+          </div>
+        </div>
+        <div style="display:flex; gap:8px; margin-top:14px;">
+          <button class="btn btn-teal" style="flex:1;" onclick="window.print()">🖨️ Cetak Sertifikat</button>
+          <button class="btn btn-glass" onclick="closeModal()">Tutup</button>
+        </div>
+      `);
+    }
+
+    /* ==========================================================================
+       4. DATA & ENGINE MENU 1: MATERI PEMBELAJARAN (8 SUBMATERI LENGKAP)
+       ========================================================================== */
+    const materiData = [
+      {
+        title: "1. Pengertian Peluang Usaha",
+        explanation: `
+          <p><strong>Peluang usaha</strong> adalah kesempatan atau waktu yang tepat yang seharusnya diambil atau dimanfaatkan oleh seorang wirausahawan untuk mendapatkan keuntungan melalui pemecahan masalah atau pemenuhan kebutuhan konsumen.</p>
+          <p style="margin-top:10px;">Peluang usaha bukan sekadar "ide biasa". Sebuah <strong>ide</strong> baru menjadi <strong>peluang usaha</strong> apabila ide tersebut memiliki nilai ekonomi, dibutuhkan pasar, realistis untuk dijalankan, dan mampu menghasilkan laba secara berkelanjutan.</p>
+        `,
+        infographic: `
+          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:10px; text-align:center;">
+            <div style="background:rgba(139,92,246,0.2); padding:12px; border-radius:10px;"><strong>💡 IDE</strong><br><small>Gagasan awal di kepala</small></div>
+            <div style="background:rgba(249,115,22,0.2); padding:12px; border-radius:10px;"><strong>➕ MASALAH PASAR</strong><br><small>Kebutuhan nyata konsumen</small></div>
+            <div style="background:rgba(20,184,166,0.25); padding:12px; border-radius:10px;"><strong>🚀 PELUANG USAHA</strong><br><small>Solusi bernilai jual & untung</small></div>
+          </div>
+        `,
+        caseStudy: `Siswa jurusan DKV di SMK PERINTIS Adiluhur melihat banyak teman OSIS kesulitan membuat desain poster acara sekolah dalam waktu cepat. Ia membuka jasa "Desain Kilat 24 Jam" khusus pelajar dengan tarif terjangkau. Ide desain berubah menjadi peluang usaha nyata!`,
+        reflection: `Pernahkah kamu melihat teman atau tetanggamu mengeluhkan sesuatu yang sulit didapatkan? Menurutmu, bisakah keluhan itu diubah menjadi peluang usaha?`,
+        quiz: {
+          q: "Apa perbedaan mendasar antara sekadar 'ide' dengan 'peluang usaha'?",
+          options: [
+            "Ide selalu membutuhkan modal miliaran, sedangkan peluang tidak butuh modal",
+            "Peluang usaha memiliki permintaan pasar nyata, dapat dieksekusi, dan bernilai ekonomi",
+            "Ide hanya dimiliki guru, sedangkan peluang dimiliki pedagang besar",
+            "Tidak ada perbedaan karena semua ide otomatis laku dijual"
+          ],
+          answer: 1
+        }
+      },
+      {
+        title: "2. Karakteristik Peluang Usaha yang Baik",
+        explanation: `
+          <p>Tidak semua peluang layak langsung dieksekusi. Peluang usaha yang baik dan potensial memiliki ciri-ciri utama berikut:</p>
+          <ul style="padding-left:20px; margin-top:8px; line-height:1.7;">
+            <li><strong>Orisinal dan Inovatif:</strong> Memiliki nilai pembeda (Unique Selling Proposition) dibanding pesaing.</li>
+            <li><strong>Sesuai Kebutuhan Pasar:</strong> Benar-benar dicari dan dibutuhkan pembeli, bukan sekadar keinginan pembuatnya.</li>
+            <li><strong>Layak Secara Finansial (Profitable):</strong> Pendapatan lebih besar daripada biaya produksi sehingga menghasilkan laba.</li>
+            <li><strong>Berkelanjutan (Sustainable):</strong> Bukan sekadar tren sesaat seminggu, melainkan bisa bertahan jangka panjang.</li>
+            <li><strong>Sesuai Kemampuan & Minat:</strong> Selaras dengan keahlian yang dimiliki wirausahawan agar mudah dikelola.</li>
+          </ul>
+        `,
+        infographic: `
+          <div style="display:flex; flex-wrap:wrap; justify-content:space-around; gap:10px; text-align:center;">
+            <span class="badge-tag tag-teal">✓ Bernilai Jual</span>
+            <span class="badge-tag tag-purple">✓ Inovatif & Unik</span>
+            <span class="badge-tag tag-orange">✓ Menguntungkan</span>
+            <span class="badge-tag tag-teal">✓ Berkelanjutan</span>
+            <span class="badge-tag tag-purple">✓ Realistis Dijalankan</span>
+          </div>
+        `,
+        caseStudy: `Dua siswa membuka usaha minuman. Siswa A meniru persis es teh manis biasa tanpa inovasi di samping 5 penjual serupa. Siswa B membuat "Es Teh Rempah Madu & Lemon" dengan kemasan cup anti-tumpah dan sistem pre-order kelas. Usaha Siswa B jauh lebih laris karena memiliki karakteristik inovasi dan solusi praktis.`,
+        reflection: `Dari 5 karakteristik peluang usaha yang baik, karakteristik mana yang paling sering diabaikan oleh pengusaha pemula?`,
+        quiz: {
+          q: "Berikut ini yang BUKAN merupakan karakteristik peluang usaha yang baik adalah...",
+          options: [
+            "Mampu memenuhi kebutuhan nyata konsumen",
+            "Memiliki keunikan atau nilai tambah dibanding pesaing",
+            "Hanya meniru produk pesaing tanpa inovasi apa pun",
+            "Dapat menghasilkan keuntungan secara berkelanjutan"
+          ],
+          answer: 2
+        }
+      },
+      {
+        title: "3. Sumber-Sumber Peluang Usaha",
+        explanation: `
+          <p>Peluang usaha dapat muncul dari dua sumber besar, yaitu <strong>faktor internal</strong> (dari dalam diri) dan <strong>faktor eksternal</strong> (dari luar diri/lingkungan):</p>
+          <ul style="padding-left:20px; margin-top:8px; line-height:1.7;">
+            <li><strong>Hobi dan Minat:</strong> Suka fotografi menjadi jasa foto wisuda/katalog UMKM.</li>
+            <li><strong>Keahlian & Pendidikan (Jurusan SMK):</strong> Jurusan TKJ membuka servis laptop & instalasi jaringan; jurusan Tata Boga membuka katering sehat.</li>
+            <li><strong>Pengalaman Pribadi:</strong> Pernah kesulitan mencari kado unik lalu membuat bisnis hampers custom.</li>
+            <li><strong>Perubahan Tren & Teknologi:</strong> Meningkatnya belanja online memunculkan jasa admin media sosial dan foto produk.</li>
+            <li><strong>Masalah di Lingkungan Sekitar:</strong> Banyak sampah plastik diubah menjadi kerajinan ecobrick atau tas daur ulang.</li>
+          </ul>
+        `,
+        infographic: `
+          <div class="swot-grid">
+            <div class="swot-box swot-o"><strong>Sumber Internal:</strong><br>Hobi, bakat, keahlian jurusan SMK, pengetahuan, dan pengalaman pribadi.</div>
+            <div class="swot-box swot-s"><strong>Sumber Eksternal:</strong><br>Masalah masyarakat, perkembangan teknologi, perubahan gaya hidup, dan tren pasar.</div>
+          </div>
+        `,
+        caseStudy: `Alumni SMK jurusan Teknik Kendaraan Ringan (TKR) melihat banyak pekerja pabrik di daerahnya berangkat pagi buta sehingga tidak sempat antre ganti oli di bengkel besar. Ia membuka layanan "Servis & Ganti Oli Panggilan ke Rumah" pada sore dan akhir pekan.`,
+        reflection: `Keahlian apa yang kamu pelajari di jurusan SMK-mu saat ini yang paling berpotensi dijadikan sumber peluang usaha?`,
+        quiz: {
+          q: "Seorang siswa SMK jurusan Tata Busana membuka usaha jasa permak pakaian dan totebag custom. Sumber peluang usaha tersebut berasal dari...",
+          options: [
+            "Keahlian dan latar belakang pendidikan",
+            "Tekanan dari pesaing luar negeri",
+            "Kebetulan tanpa perencanaan",
+            "Pinjaman modal bank"
+          ],
+          answer: 0
+        }
+      },
+      {
+        title: "4. Cara Mengidentifikasi Peluang Usaha",
+        explanation: `
+          <p>Untuk menemukan peluang usaha secara sistematis, seorang wirausahawan muda dapat melakukan 4 langkah identifikasi:</p>
+          <ol style="padding-left:20px; margin-top:8px; line-height:1.7;">
+            <li><strong>Observasi Lingkungan:</strong> Mengamati aktivitas harian masyarakat, sekolah, maupun tren digital.</li>
+            <li><strong>Wawancara & Mendengar Keluhan:</strong> Bertanya langsung kepada calon pembeli mengenai produk/jasa yang mereka inginkan tetapi belum ada.</li>
+            <li><strong>Analisis Kesenjangan (Gap Analysis):</strong> Membandingkan layanan yang sudah ada dengan harapan konsumen (misal: harga terlalu mahal, pelayanan lambat, kemasan kurang menarik).</li>
+            <li><strong>ATM (Amati, Tiru, Modifikasi):</strong> Mengamati bisnis yang sudah sukses di kota lain lalu memodifikasinya sesuai selera lokal.</li>
+          </ol>
+        `,
+        infographic: `
+          <div style="text-align:center; font-weight:700; color:#5eead4;">
+            1. Observasi → 2. Gali Keluhan → 3. Analisis Gap → 4. Terapkan ATM (Amati, Tiru, Modifikasi)
+          </div>
+        `,
+        caseStudy: `Kelompok siswa melakukan survei singkat lewat Google Form kepada 50 siswa SMK. Hasilnya 78% siswa mengeluhkan harga snack kantin kurang mengenyangkan saat jam pelajaran tambahan sore. Mereka pun menciptakan "Rice Bowl Mini Rp8.000" yang langsung habis terjual setiap hari.`,
+        reflection: `Mengapa metode ATM (Amati, Tiru, Modifikasi) lebih disarankan daripada sekadar menjiplak produk pesaing?`,
+        quiz: {
+          q: "Dalam mengidentifikasi peluang usaha, prinsip ATM adalah singkatan dari...",
+          options: [
+            "Analisis, Target, Modal",
+            "Amati, Tiru, Modifikasi",
+            "Atur, Tentukan, Marketing",
+            "Ambil, Tukar, Manfaatkan"
+          ],
+          answer: 1
+        }
+      },
+      {
+        title: "5. Analisis Kebutuhan Konsumen",
+        explanation: `
+          <p><strong>Analisis kebutuhan konsumen</strong> adalah proses memahami apa yang diinginkan, dibutuhkan, dan dirasakan oleh pembeli sebelum kita membuat produk. Prinsip utamanya: <em>"Buatlah produk yang dicari pasar, bukan memaksa pasar membeli produk yang kita buat."</em></p>
+          <p style="margin-top:8px;">Aspek yang dianalisis meliputi:</p>
+          <ul style="padding-left:20px; margin-top:6px;">
+            <li><strong>Functional Needs:</strong> Manfaat utama produk (mengenyangkan, mempercepat kerja, melindungi).</li>
+            <li><strong>Price Sensitivity:</strong> Berapa harga yang sanggup dibayar konsumen.</li>
+            <li><strong>Convenience (Kemudahan):</strong> Cara pemesanan, pembayaran (QRIS/tunai), dan pengiriman yang praktis.</li>
+          </ul>
+        `,
+        infographic: `
+          <div class="case-box" style="margin:0;">
+            <strong>Rumus Emas Riset Konsumen:</strong><br>
+            <em>Pain Points (Masalah Pembeli) + Gains (Manfaat yang Diharapkan) = Desain Produk Ideal</em>
+          </div>
+        `,
+        caseStudy: `Penjual pulsa & kuota di sekitar asrama siswa awalnya hanya buka sampai pukul 17.00. Setelah menganalisis kebutuhan konsumen, ternyata siswa paling sering kehabisan kuota pada pukul 20.00–22.00 saat mengerjakan tugas. Penjual pun membuka layanan pemesanan otomatis via WhatsApp hingga pukul 22.00 dan omzetnya naik 2 kali lipat.`,
+        reflection: `Apa perbedaan antara 'kebutuhan' dan 'keinginan' konsumen saat membeli sebuah produk?`,
+        quiz: {
+          q: "Tujuan utama melakukan analisis kebutuhan konsumen sebelum memulai usaha adalah...",
+          options: [
+            "Menghabiskan anggaran modal awal secepat mungkin",
+            "Memastikan produk yang dibuat sesuai dengan masalah dan daya beli calon pelanggan",
+            "Menghindari pembayaran pajak usaha",
+            "Meniru harga jual produk impor"
+          ],
+          answer: 1
+        }
+      },
+      {
+        title: "6. Analisis SWOT",
+        explanation: `
+          <p><strong>Analisis SWOT</strong> adalah metode perencanaan strategis untuk mengevaluasi empat faktor utama dalam sebuah proyek atau peluang usaha:</p>
+          <ul style="padding-left:20px; margin-top:8px; line-height:1.7;">
+            <li><strong>S — Strengths (Kekuatan):</strong> Keunggulan internal yang dimiliki usahamu (contoh: rasa enak, harga hemat, skill desain mumpuni).</li>
+            <li><strong>W — Weaknesses (Kelemahan):</strong> Keterbatasan internal yang perlu diperbaiki (contoh: modal kecil, tenaga produksi terbatas).</li>
+            <li><strong>O — Opportunities (Peluang):</strong> Faktor eksternal yang menguntungkan (contoh: tren belanja online, dukungan acara sekolah).</li>
+            <li><strong>T — Threats (Ancaman):</strong> Faktor eksternal yang berisiko menghambat usaha (contoh: munculnya pesaing baru, harga bahan baku naik).</li>
+          </ul>
+        `,
+        infographic: `
+          <div class="swot-grid">
+            <div class="swot-box swot-s"><strong>S (Internal +)</strong><br>Gunakan kekuatan untuk meraih peluang (Strategi SO).</div>
+            <div class="swot-box swot-w"><strong>W (Internal -)</strong><br>Atasi kelemahan dengan memanfaatkan peluang (Strategi WO).</div>
+            <div class="swot-box swot-o"><strong>O (Eksternal +)</strong><br>Peluang pasar yang terbuka lebar.</div>
+            <div class="swot-box swot-t"><strong>T (Eksternal -)</strong><br>Gunakan kekuatan untuk menghadapi ancaman (Strategi ST).</div>
+          </div>
+        `,
+        caseStudy: `Usaha "Keripik Pisang Lumer" siswa SMK memiliki Strength (resep cokelat premium), Weakness (kapasitas produksi baru 40 bungkus/hari), Opportunity (banyak peminat camilan di Instagram), dan Threat (harga pisang kepok naik saat musim hujan). Solusinya: bekerja sama langsung dengan petani pisang lokal untuk menjaga harga bahan baku.`,
+        reflection: `Mengapa Strength dan Weakness disebut faktor internal, sedangkan Opportunity dan Threat disebut faktor eksternal?`,
+        quiz: {
+          q: "Munculnya banyak pesaing baru yang menjual produk serupa di sekitar sekolah termasuk dalam komponen SWOT bagian...",
+          options: [
+            "Strength (Kekuatan)",
+            "Weakness (Kelemahan)",
+            "Opportunity (Peluang)",
+            "Threat (Ancaman)"
+          ],
+          answer: 3
+        }
+      },
+      {
+        title: "7. Analisis Peluang Usaha Berdasarkan Lingkungan Sekitar",
+        explanation: `
+          <p>Setiap lingkungan memiliki karakteristik demografi dan potensi ekonomi yang berbeda. Seorang wirausahawan SMK harus jeli membaca potensi lingkungan terdekatnya:</p>
+          <ul style="padding-left:20px; margin-top:8px; line-height:1.7;">
+            <li><strong>Lingkungan Sekolah:</strong> Alat tulis darurat, cetak dokumen/jilid kilat, camilan sehat, minuman segar, jasa desain presentasi.</li>
+            <li><strong>Lingkungan Perumahan/Desa:</strong> Sayur siap masak, laundry kiloan, servis elektronik/motor, les privat anak SD.</li>
+            <li><strong>Lingkungan Pertanian/Perkebunan:</strong> Pengolahan hasil panen (keripik, selai, minuman herbal) agar nilai jual meningkat.</li>
+            <li><strong>Lingkungan Digital/Media Sosial:</strong> Reseller/dropshipper, jasa edit video pendek (Reels/TikTok), pembuatan filter atau template digital.</li>
+          </ul>
+        `,
+        infographic: `
+          <div style="text-align:center; padding:8px;">
+            <span style="color:#fdba74; font-weight:700;">Potensi Lokal + Sentuhan Kreativitas SMK = Produk Unggulan Berdaya Saing</span>
+          </div>
+        `,
+        caseStudy: `Di sekitar SMK PERINTIS Adiluhur banyak warga menanam singkong dan pisang namun hanya dijual mentah dengan harga murah. Siswa jurusan Agribisnis/Kuliner mengolahnya menjadi "Brownies Singkong Kukus" dengan kemasan modern sehingga nilai jualnya naik 300%.`,
+        reflection: `Sumber daya alam atau potensi sosial apa yang paling melimpah di daerah tempat tinggalmu saat ini?`,
+        quiz: {
+          q: "Mengolah hasil pertanian lokal seperti singkong menjadi brownies kemasan modern merupakan contoh pemanfaatan peluang usaha berdasarkan...",
+          options: [
+            "Potensi sumber daya lingkungan sekitar",
+            "Impor bahan baku luar negeri",
+            "Spekulasi saham",
+            "Pengurangan kualitas produk"
+          ],
+          answer: 0
+        }
+      },
+      {
+        title: "8. Menentukan Ide Usaha Kreatif dan Inovatif",
+        explanation: `
+          <p><strong>Kreativitas</strong> adalah kemampuan melahirkan gagasan baru, sedangkan <strong>inovasi</strong> adalah penerapan gagasan kreatif tersebut menjadi produk, jasa, atau proses bisnis yang bernilai guna.</p>
+          <p style="margin-top:8px;">Cara menciptakan inovasi pada ide usaha:</p>
+          <ul style="padding-left:20px; margin-top:6px; line-height:1.7;">
+            <li><strong>Inovasi Produk:</strong> Varian rasa baru, ukuran mini hemat, atau bahan ramah lingkungan.</li>
+            <li><strong>Inovasi Kemasan:</strong> Kemasan higienis, estetik untuk difoto, dan mudah dibawa.</li>
+            <li><strong>Inovasi Layanan:</strong> Sistem pre-order via WhatsApp, antar ke kelas/rumah, atau garansi kepuasan.</li>
+            <li><strong>Inovasi Pemasaran:</strong> Konten video edukatif/hiburan singkat dan promo paket bundling teman.</li>
+          </ul>
+        `,
+        infographic: `
+          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:8px; text-align:center;">
+            <div class="swot-box swot-s"><strong>Kreativitas</strong><br><small>Berpikir berbeda (Out of the Box)</small></div>
+            <div class="swot-box swot-o"><strong>Inovasi</strong><br><small>Mewujudkan ide jadi nilai jual</small></div>
+            <div class="swot-box swot-w"><strong>Nilai Tambah</strong><br><small>Alasan pembeli memilih kita</small></div>
+          </div>
+        `,
+        caseStudy: `Usaha jasa cuci sepatu biasa hanya menunggu pelanggan datang. Siswa kreatif menambahkan inovasi: "Free Pick-Up & Delivery Area Sekolah + Parfum Sepatu Antibakteri + Foto Before-After". Dalam 2 minggu, pelanggan meningkat drastis.`,
+        reflection: `Jika kamu membuka usaha makanan ringan atau jasa digital minggu depan, inovasi unik apa yang akan kamu tawarkan agar berbeda dari pesaing?`,
+        quiz: {
+          q: "Menambahkan layanan pesan-antar gratis ke kelas dan kemasan ramah lingkungan pada produk minuman merupakan bentuk...",
+          options: [
+            "Pemborosan biaya tanpa manfaat",
+            "Inovasi layanan dan kemasan untuk meningkatkan nilai tambah",
+            "Penurunan standar mutu produk",
+            "Monopoli pasar"
+          ],
+          answer: 1
+        }
+      }
+    ];
+
+    let currentMateriIdx = 0;
+
+    function renderMateriSidebar() {
+      const list = document.getElementById('submateriList');
+      list.innerHTML = materiData.map((item, idx) => {
+        const done = appState.completedMateri.includes(idx);
+        return `
+          <button class="submateri-btn ${idx === currentMateriIdx ? 'active' : ''}" onclick="selectSubmateri(${idx})">
+            <span>${item.title}</span>
+            <span>${done ? '✅' : '○'}</span>
+          </button>
+        `;
+      }).join('');
+    }
+
+    function selectSubmateri(idx) {
+      playSFX('click');
+      currentMateriIdx = idx;
+      renderMateriSidebar();
+      const m = materiData[idx];
+      const isDone = appState.completedMateri.includes(idx);
+
+      document.getElementById('materiContentArea').innerHTML = `
+        <div class="tts-inline-bar">
+          <div style="font-size:0.86rem; font-weight:700; color:#ddd6fe;">🔊 Audio Pembelajaran (Web Speech API id-ID)</div>
+          <div style="display:flex; flex-wrap:wrap; gap:6px;">
+            <button class="btn btn-teal btn-sm" onclick="readCurrentMateri()">▶️ Dengarkan Materi</button>
+            <button class="btn btn-glass btn-sm" onclick="pauseTTS()">⏸️ Jeda</button>
+            <button class="btn btn-danger btn-sm" onclick="stopTTS()">⏹️ Henti</button>
+          </div>
+        </div>
+
+        <span class="badge-tag tag-purple">Submateri ${idx + 1} dari 8 ${isDone ? '• Selesai ✓' : ''}</span>
+        <h3 style="font-size:1.4rem; margin:8px 0 14px; color:#fff;">${m.title}</h3>
+
+        <div style="color:var(--text-main); font-size:0.96rem; line-height:1.7;">
+          ${m.explanation}
+        </div>
+
+        <div class="infographic-box">
+          <div style="font-size:0.8rem; font-weight:700; color:#5eead4; margin-bottom:8px; text-transform:uppercase;">📊 Infografis Ringkas</div>
+          ${m.infographic}
+        </div>
+
+        <div class="case-box">
+          <div style="font-size:0.82rem; font-weight:700; color:#fdba74; margin-bottom:6px; text-transform:uppercase;">🏫 Contoh Kasus Nyata Siswa SMK</div>
+          <p style="font-size:0.92rem;">${m.caseStudy}</p>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.05); border-radius:12px; padding:15px; margin:16px 0;">
+          <div style="font-weight:700; color:#c4b5fd; margin-bottom:6px;">💭 Pertanyaan Refleksi Siswa:</div>
+          <p style="font-size:0.9rem; font-style:italic; color:var(--text-muted);">${m.reflection}</p>
+        </div>
+
+        <!-- Kuis Singkat Submateri -->
+        <div style="background:rgba(7,13,31,0.75); border:1px solid var(--teal-accent); border-radius:14px; padding:16px; margin-top:18px;">
+          <div style="font-weight:800; color:#5eead4; margin-bottom:10px;">⚡ Kuis Singkat Cek Pemahaman</div>
+          <p style="font-weight:600; margin-bottom:12px;">${m.quiz.q}</p>
+          <div id="subQuizOptions">
+            ${m.quiz.options.map((opt, oIdx) => `
+              <button class="quiz-option" onclick="answerSubQuiz(${idx}, ${oIdx}, this)">
+                ${String.fromCharCode(65 + oIdx)}. ${opt}
+              </button>
+            `).join('')}
+          </div>
+          <div id="subQuizFeedback" style="margin-top:8px; font-size:0.88rem; font-weight:600;"></div>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; margin-top:22px; padding-top:14px; border-top:1px solid var(--border-glass);">
+          <button class="btn btn-glass" ${idx === 0 ? 'disabled style="opacity:0.4;"' : ''} onclick="selectSubmateri(${idx - 1})">← Submateri Sebelumnya</button>
+          <button class="btn btn-orange" onclick="${idx < materiData.length - 1 ? `selectSubmateri(${idx + 1})` : `navigateTo('simulasi')`}">
+            ${idx < materiData.length - 1 ? 'Submateri Berikutnya →' : 'Lanjut ke Simulasi 🚀'}
+          </button>
+        </div>
+      `;
+    }
+
+    function readCurrentMateri() {
+      const m = materiData[currentMateriIdx];
+      speakText(`${m.title}. ${m.explanation}. Contoh kasus nyata: ${m.caseStudy}`);
+    }
+
+    function answerSubQuiz(materiIdx, chosenIdx, btnEl) {
+      const correctIdx = materiData[materiIdx].quiz.answer;
+      const allBtns = document.querySelectorAll('#subQuizOptions .quiz-option');
+      allBtns.forEach(b => b.classList.remove('correct', 'wrong'));
+
+      const fb = document.getElementById('subQuizFeedback');
+      if (chosenIdx === correctIdx) {
+        playSFX('correct');
+        btnEl.classList.add('correct');
+        fb.style.color = '#10b981';
+        fb.textContent = '🎉 Tepat sekali! Pemahamanmu sangat baik. Submateri ini ditandai selesai.';
+        if (!appState.completedMateri.includes(materiIdx)) {
+          appState.completedMateri.push(materiIdx);
+          saveState();
+          renderMateriSidebar();
+        }
+      } else {
+        playSFX('wrong');
+        btnEl.classList.add('wrong');
+        fb.style.color = '#f87171';
+        fb.textContent = '❌ Kurang tepat. Coba baca kembali penjelasan di atas lalu pilih jawaban lain!';
+      }
+    }
+
+    /* ==========================================================================
+       5. ENGINE MENU 2: SIMULASI ("JADILAH PENGUSAHA MUDA" + KALKULATOR BEP)
+       ========================================================================== */
+    function switchSimTab(tabCode, btnEl) {
+      playSFX('click');
+      document.querySelectorAll('.sim-panel').forEach(p => p.style.display = 'none');
+      document.getElementById('sim-panel-' + tabCode).style.display = 'block';
+
+      document.querySelectorAll('.sim-tab-btn').forEach(b => {
+        b.classList.remove('btn-purple', 'btn-orange', 'active');
+        b.classList.add('btn-glass');
+      });
+      btnEl.classList.remove('btn-glass');
+      btnEl.classList.add(tabCode === 'F' ? 'btn-orange' : 'btn-purple', 'active');
+
+      appState.simulasiDone = true;
+      saveState();
+    }
+
+    function runSimA() {
+      const env = document.getElementById('simEnvSelect').value;
+      const prob = document.getElementById('simProbSelect').value;
+      const map = {
+        antre: {
+          idea: "Pre-Order Sarapan & Minuman Sehat via WhatsApp (Ambil Cepat Tanpa Antre)",
+          usp: "Pesanan sudah siap saat jam istirahat berbunyi + kemasan praktis.",
+          jurusan: "Kuliner / Tata Boga / Pemasaran"
+        },
+        promosi: {
+          idea: "Agensi Mini Konten Sosial Media & Desain Katalog UMKM",
+          usp: "Paket hemat foto produk + 10 desain feed Instagram + copywriting promosi.",
+          jurusan: "DKV / Multimedia / Bisnis Digital"
+        },
+        gadget: {
+          idea: "Klinik Servis Ringan, Pembersihan Laptop & Ganti Oli Cepat",
+          usp: "Layanan antar-jemput unit di area sekolah/perumahan dengan garansi.",
+          jurusan: "TKJ / RPL / TKR / TSM"
+        },
+        sampah: {
+          idea: "Kerajinan Upcycle (Totebag Perca, Pouch Estetik, & Pot Ecobrick)",
+          usp: "Produk ramah lingkungan dengan desain custom nama/karakter.",
+          jurusan: "Tata Busana / Kriya / Umum"
+        }
+      };
+      const res = map[prob];
+      document.getElementById('simAResult').innerHTML = `
+        <strong style="color:#5eead4;">💡 Rekomendasi Peluang Usaha (${env.toUpperCase()}):</strong>
+        <h4 style="margin:6px 0; color:#fff;">${res.idea}</h4>
+        <p style="font-size:0.9rem; color:var(--text-muted);"><strong>Nilai Jual Utama:</strong> ${res.usp}</p>
+        <p style="font-size:0.85rem; color:#fdba74; margin-top:4px;"><strong>Relevansi Kompetensi SMK:</strong> ${res.jurusan}</p>
+      `;
+    }
+
+    function runSimB() {
+      const s = +document.getElementById('rangeS').value;
+      const w = +document.getElementById('rangeW').value;
+      const o = +document.getElementById('rangeO').value;
+      const t = +document.getElementById('rangeT').value;
+      const netInternal = s - w;
+      const netExternal = o - t;
+      let kuadran = "";
+      let saran = "";
+
+      if (netInternal >= 0 && netExternal >= 0) {
+        kuadran = "KUADRAN I — STRATEGI AGRESIF (SO)";
+        saran = "Sangat Layak! Kekuatan dan peluangmu dominan. Fokuslah memperluas promosi dan meningkatkan kapasitas produksi.";
+      } else if (netInternal < 0 && netExternal >= 0) {
+        kuadran = "KUADRAN III — STRATEGI TURN-AROUND (WO)";
+        saran = "Peluang pasar besar, tetapi kelemahan internal masih tinggi. Perbaiki manajemen modal, kemasan, atau kualitas skill terlebih dahulu.";
+      } else if (netInternal >= 0 && netExternal < 0) {
+        kuadran = "KUADRAN II — STRATEGI DIVERSIFIKASI (ST)";
+        saran = "Kamu punya kekuatan internal bagus di tengah ancaman pesaing. Ciptakan variasi produk unik agar pelanggan tidak berpindah.";
+      } else {
+        kuadran = "KUADRAN IV — STRATEGI DEFENSIF (WT)";
+        saran = "Risiko tinggi! Kelemahan dan ancaman sama-sama besar. Lakukan inovasi ulang sebelum mengeluarkan modal besar.";
+      }
+
+      document.getElementById('simBResult').innerHTML = `
+        <div style="font-weight:800; color:#c4b5fd; font-size:1.05rem;">${kuadran}</div>
+        <div style="font-size:0.86rem; margin:6px 0;">Skor Internal (S - W): <strong>${netInternal >= 0 ? '+' + netInternal : netInternal}</strong> | Skor Eksternal (O - T): <strong>${netExternal >= 0 ? '+' + netExternal : netExternal}</strong></div>
+        <p style="font-size:0.9rem; color:var(--text-muted);">${saran}</p>
+      `;
+    }
+
+    function runSimC() {
+      const age = document.getElementById('simAge').value;
+      const inc = document.getElementById('simIncome').value;
+      const hab = document.getElementById('simHabit').value;
+      document.getElementById('simCResult').innerHTML = `
+        <strong style="color:#5eead4;">🎯 Profil Buyer Persona (Target Pasar Ideal):</strong>
+        <p style="font-size:0.92rem; margin-top:6px;">
+          Produkmu difokuskan untuk segmen <strong>${age}</strong> dengan kemampuan belanja <strong>${inc}</strong>. 
+          Karena karakter konsumenmu <em>"${hab}"</em>, strategi terbaik adalah menyediakan metode pembayaran digital (QRIS), harga psikologis (misal Rp9.500), dan promo paket teman.
+        </p>
+      `;
+    }
+
+    function formatRp(num) {
+      return 'Rp' + Math.round(num).toLocaleString('id-ID');
+    }
+
+    function runSimD() {
+      const alat = +document.getElementById('modAlat').value || 0;
+      const bahan = +document.getElementById('modBahan').value || 0;
+      const kemasan = +document.getElementById('modKemasan').value || 0;
+      const total = alat + bahan + kemasan;
+      document.getElementById('simDResult').innerHTML = `
+        <div style="font-size:1.1rem; font-weight:800; color:#fdba74;">Total Kebutuhan Modal Awal: ${formatRp(total)}</div>
+        <p style="font-size:0.88rem; color:var(--text-muted); margin-top:6px;">
+          Proporsi Peralatan: <strong>${total ? Math.round((alat/total)*100) : 0}%</strong> | Bahan Baku: <strong>${total ? Math.round((bahan/total)*100) : 0}%</strong> | Kemasan & Promosi: <strong>${total ? Math.round((kemasan/total)*100) : 0}%</strong>.<br>
+          <em>Tips Wirausaha SMK:</em> Gunakan sistem Pre-Order (PO) agar uang pembeli bisa membiayai pembelian bahan baku sehingga risiko kerugian minimal!
+        </p>
+      `;
+    }
+
+    function runSimE() {
+      const hpp = +document.getElementById('priceHpp').value || 0;
+      const margin = +document.getElementById('priceMargin').value || 0;
+      const comp = +document.getElementById('priceComp').value || 0;
+      const sellPrice = hpp + (hpp * margin / 100);
+      const profitPerUnit = sellPrice - hpp;
+      let status = sellPrice <= comp
+        ? "✅ Kompetitif! Harga jualmu lebih hemat atau setara dengan pesaing."
+        : "⚠️ Harga jualmu di atas rata-rata pesaing. Pastikan produkmu punya kemasan premium atau bonus tambahan.";
+
+      document.getElementById('simEResult').innerHTML = `
+        <div style="font-size:1.1rem; font-weight:800; color:#5eead4;">Rekomendasi Harga Jual: ${formatRp(sellPrice)} / unit</div>
+        <div style="font-size:0.9rem; margin:6px 0;">Laba Kotor per Unit: <strong>${formatRp(profitPerUnit)}</strong> (vs Pesaing: ${formatRp(comp)})</div>
+        <p style="font-size:0.88rem; color:var(--text-muted);">${status}</p>
+      `;
+    }
+
+    // KALKULATOR BISNIS UTAMA (RUMUS AKURAT SESUAI SPESIFIKASI)
+    function resetSimF() {
+      playSFX('click');
+      document.getElementById('calcModalAwal').value = 500000;
+      document.getElementById('calcFixedCost').value = 50000;
+      document.getElementById('calcVarCost').value = 5000;
+      document.getElementById('calcPrice').value = 10000;
+      document.getElementById('calcQty').value = 30;
+      calculateBusiness();
+      showToast('Kalkulator dikembalikan ke contoh kasus Minuman Kekinian.');
+    }
+
+    function calculateBusiness() {
+      const modalAwal = Math.max(0, +document.getElementById('calcModalAwal').value || 0);
+      const fixedCost = Math.max(0, +document.getElementById('calcFixedCost').value || 0);
+      const varCostPerUnit = Math.max(0, +document.getElementById('calcVarCost').value || 0);
+      const price = Math.max(0, +document.getElementById('calcPrice').value || 0);
+      const qty = Math.max(0, +document.getElementById('calcQty').value || 0);
+
+      // Rumus wajib:
+      // Omzet = Harga jual x Jumlah produk terjual
+      const omzet = price * qty;
+      // Total biaya = Biaya tetap + Total biaya variabel
+      const totalVarCost = varCostPerUnit * qty;
+      const totalCost = fixedCost + totalVarCost;
+      // Laba = Omzet - Total biaya
+      const profit = omzet - totalCost;
+      // BEP unit = Biaya tetap / (Harga jual - Biaya variabel per unit)
+      const marginKontribusi = price - varCostPerUnit;
+      let bepUnitText = '';
+      let bepUnitVal = 0;
+
+      if (marginKontribusi <= 0) {
+        bepUnitText = 'Tidak Tercapai';
+      } else {
+        bepUnitVal = Math.ceil(fixedCost / marginKontribusi);
+        bepUnitText = bepUnitVal.toLocaleString('id-ID') + ' Unit';
+      }
+
+      // Estimasi balik modal awal
+      let paybackText = '-';
+      if (profit > 0 && modalAwal > 0) {
+        const periods = Math.ceil(modalAwal / profit);
+        paybackText = periods + ' Hari/Siklus';
+      } else if (modalAwal === 0) {
+        paybackText = 'Langsung Untung';
+      } else {
+        paybackText = 'Belum Balik Modal';
+      }
+
+      document.getElementById('resOmzet').textContent = formatRp(omzet);
+      document.getElementById('resTotalCost').textContent = formatRp(totalCost);
+
+      const profitEl = document.getElementById('resProfit');
+      if (profit >= 0) {
+        profitEl.textContent = '+' + formatRp(profit);
+        profitEl.style.color = '#10b981';
+      } else {
+        profitEl.textContent = '-' + formatRp(Math.abs(profit));
+        profitEl.style.color = '#ef4444';
+      }
+
+      document.getElementById('resBepUnit').textContent = bepUnitText;
+      document.getElementById('resPayback').textContent = paybackText;
+
+      // Analisis Kelayakan Sederhana
+      let analisis = '';
+      if (marginKontribusi <= 0) {
+        analisis = `<strong style="color:#ef4444;">⚠️ PERINGATAN HARGA JUAL:</strong> Harga jual (${formatRp(price)}) lebih kecil atau sama dengan biaya variabel per produk (${formatRp(varCostPerUnit)}). Usaha akan terus merugi berapa pun produk yang terjual. Segera naikkan harga jual atau efisiensi biaya bahan baku!`;
+      } else if (profit > 0) {
+        analisis = `<strong style="color:#10b981;">✅ USAHA LAYAK DIKEMBANGKAN:</strong> Dengan menjual <strong>${qty} unit</strong> pada harga <strong>${formatRp(price)}</strong>, kamu memperoleh omzet <strong>${formatRp(omzet)}</strong> dan laba bersih <strong>${formatRp(profit)}</strong>. Titik impas (BEP) tercapai pada penjualan <strong>${bepUnitText}</strong>. Karena penjualanmu sudah melampaui BEP, usaha ini sehat dan modal awal sebesar <strong>${formatRp(modalAwal)}</strong> diperkirakan kembali dalam <strong>${paybackText}</strong>!`;
+      } else if (profit === 0) {
+        analisis = `<strong style="color:#eab308;">⚖️ POSISI IMPAS (BREAK EVEN):</strong> Pendapatanmu pas menutupi seluruh biaya (Laba = Rp0). Tingkatkan jumlah penjualan di atas <strong>${bepUnitText}</strong> agar mulai menghasilkan keuntungan.`;
+      } else {
+        analisis = `<strong style="color:#ef4444;">❌ BELUM LAYAK / MASIH RUGI (${formatRp(Math.abs(profit))}):</strong> Jumlah penjualan (${qty} unit) masih di bawah titik impas minimal yaitu <strong>${bepUnitText}</strong>. Tingkatkan target penjualan atau kurangi biaya tetap agar usaha menjadi untung.`;
+      }
+
+      document.getElementById('calcExplanation').innerHTML = analisis;
+    }
+
+    /* ==========================================================================
+       6. ENGINE MENU 3: PRAKTIKUM LAPANGAN
+       ========================================================================== */
+    const prakTemplates = {
+      fnb: {
+        prak1: "Mengamati aktivitas siswa SMK saat jam istirahat pertama dan kedua di area kantin dan koridor kelas.",
+        prak2: "1. Siswa sering kehabisan waktu istirahat karena antre minuman dingin.\n2. Pilihan camilan sehat yang mengenyangkan di bawah Rp10.000 masih sedikit.\n3. Siswa malas membawa uang tunai kembalian.",
+        prak3: "1. Minuman sehat Matcha/Choco Oat Milk sistem Pre-Order WhatsApp.\n2. Rice Bowl Mini Ayam Teriyaki Rp9.000.\n3. Paket Bundling Sarapan + Minuman pembayaran QRIS.",
+        prak4: "Memilih 'Choco-Oat Energy Cup Pre-Order' karena proses pembuatannya cepat, bahan mudah didapat, disukai remaja, dan bisa dipesan sebelum istirahat.",
+        prakSwotS: "Rasa kekinian, mengenyangkan, bisa dipesan online tanpa antre.",
+        prakSwotW: "Daya tahan minuman segar maksimal 12 jam jika tanpa kulkas.",
+        prakSwotO: "Jumlah siswa dan guru lebih dari 800 orang setiap hari.",
+        prakSwotT: "Banyak pedagang minuman manis di luar gerbang sekolah.",
+        prak6: "Pelajar SMK usia 15–18 tahun dan guru dengan uang saku harian Rp10.000–Rp25.000.",
+        prak7: "Cup 14oz bersegel anti tumpah, stiker merek kreatif, kombinasi susu, oat, dan cokelat premium harga Rp8.000/cup.",
+        prak8: "Peluang usaha sangat layak dijalankan dengan sistem Pre-Order pagi hari agar tidak ada produk sisa."
+      },
+      craft: {
+        prak1: "Mengamati limbah kain perca penjahit sekitar dan kebutuhan aksesori pelajar SMK.",
+        prak2: "1. Tumpukan kain perca belum dimanfaatkan.\n2. Siswa butuh pouch/tempat alat tulis & charger yang awet.\n3. Kado wisuda/ulang tahun teman seringkali monoton.",
+        prak3: "1. Pouch & Tempat Pensil Perca Etnik.\n2. Gantungan Kunci & Lanyard ID Card Custom.\n3. Buket Wisuda Kain Flanel/Perca.",
+        prak4: "Memilih 'Lanyard & Pouch Gadget Custom Perca' karena seluruh siswa dan guru memakai ID Card setiap hari.",
+        prakSwotS: "Bahan baku murah (upcycle), motif unik tidak pasaran, jahitan kuat.",
+        prakSwotW: "Waktu pengerjaan motif custom membutuhkan ketelitian lebih lama.",
+        prakSwotO: "Tren produk ramah lingkungan (eco-friendly) sedang digemari anak muda.",
+        prakSwotT: "Produk pabrik massal di marketplace berharga sangat murah.",
+        prak6: "Siswa SMK, mahasiswa, dan guru berusia 15–40 tahun.",
+        prak7: "Pouch multifungsi muat powerbank & kabel data dengan bordir inisial nama pemesan, harga Rp15.000.",
+        prak8: "Layak dijalankan karena modal bahan sangat kecil dan bernilai seni tinggi."
+      },
+      design: {
+        prak1: "Mengamati pelaku UMKM warung makan sekitar sekolah dan organisasi siswa di media sosial.",
+        prak2: "1. Banyak warung enak tidak punya daftar menu digital & logo menarik.\n2. Pengurus ekstrakurikuler butuh poster kegiatan mendadak.\n3. Siswa kesulitan membuat slide presentasi proyek yang rapi.",
+        prak3: "1. Jasa Desain Menu & Banner UMKM.\n2. Jasa Poster Event & Feed Instagram Kilat.\n3. Jasa Desain Slide Pitch Deck & Infografis.",
+        prak4: "Memilih 'Studio Desain Kilat UMKM & Pelajar' karena sesuai kompetensi keahlian DKV dan tanpa modal bahan fisik.",
+        prakSwotS: "Keahlian software desain dikuasai, pengerjaan cepat 24 jam, tanpa biaya sewa tempat.",
+        prakSwotW: "Keterbatasan waktu pengerjaan saat jam sekolah berlangsung.",
+        prakSwotO: "UMKM sekitar mulai beralih ke promosi WhatsApp Business dan Instagram.",
+        prakSwotT: "Banyaknya aplikasi template gratis yang bisa dipakai sendiri oleh klien.",
+        prak6: "Pemilik warung/toko lokal dan pelajar/mahasiswa.",
+        prak7: "Paket Hemat UMKM Rp35.000 (1 Logo + 1 Daftar Menu + 3 Poster Promo) revisi 2x.",
+        prak8: "Sangat layak dijalankan dengan margin keuntungan hampir 90% karena berbasis keahlian digital."
+      },
+      photo: {
+        prak1: "Mengamati kegiatan perpisahan sekolah, lomba antar-kelas, dan toko online lokal.",
+        prak2: "1. UMKM kesulitan memotret produk agar terlihat profesional.\n2. Siswa ingin foto profil/buku tahunan dengan biaya terjangkau.\n3. Dokumentasi acara warga sering hanya memakai kamera HP seadanya.",
+        prak3: "1. Jasa Foto Katalog Produk UMKM Mini Studio.\n2. Jasa Fotografi Event & Wisuda Sekolah.\n3. Jasa Video Pendek Promosi Reels/TikTok.",
+        prak4: "Memilih 'Jasa Foto Katalog Produk UMKM' karena setiap toko online wajib memiliki foto produk yang jernih.",
+        prakSwotS: "Memiliki kamera DSLR/Mirrorless sekolah/pribadi dan skill editing warna.",
+        prakSwotW: "Peralatan pencahayaan (lighting) portabel masih terbatas.",
+        prakSwotO: "Pertumbuhan penjual makanan & fashion online di lingkungan sekitar.",
+        prakSwotT: "Kamera smartphone generasi baru semakin canggih.",
+        prak6: "Pelaku UMKM kuliner, fashion, dan kerajinan di sekitar kecamatan.",
+        prak7: "Paket 10 Foto Produk High-Res + Editing Tone Warna + Video Teaser 15 detik seharga Rp75.000.",
+        prak8: "Layak dikembangkan menjadi portofolio profesional sekaligus sumber penghasilan siswa SMK."
+      },
+      digital: {
+        prak1: "Mengamati perilaku pengguna smartphone dan pelajar di platform media sosial.",
+        prak2: "1. Siswa butuh template catatan belajar & jadwal ujian yang rapi.\n2. Kreator pemula butuh preset warna dan template konten.\n3. Bendahara kelas/UMKM butuh template pembukuan Excel otomatis.",
+        prak3: "1. Paket Template Notion & Planner Belajar.\n2. Template Pembukuan Keuangan UMKM (Excel/Google Sheets).\n3. Paket Preset Foto & Template Canva.",
+        prak4: "Memilih 'Template Pembukuan Keuangan Praktis UMKM' karena dibuat sekali tetapi bisa dijual berkali-kali tanpa stok fisik.",
+        prakSwotS: "Biaya produksi nol setelah produk selesai, pengiriman instan lewat link.",
+        prakSwotW: "Memerlukan edukasi cara penggunaan kepada pembeli awal.",
+        prakSwotO: "Pasar digital menjangkau pembeli di seluruh Indonesia.",
+        prakSwotT: "Risiko file dibagikan ulang tanpa izin.",
+        prak6: "Pemilik usaha mikro, bendahara organisasi, dan mahasiswa.",
+        prak7: "File spreadsheet otomatis hitung omzet, laba, dan stok + video tutorial 5 menit seharga Rp25.000.",
+        prak8: "Sangat layak dijalankan karena skalabilitas tinggi dan bebas biaya pengiriman."
+      },
+      tech: {
+        prak1: "Mengamati kondisi perangkat laptop siswa/guru serta kendaraan bermotor di lingkungan sekolah.",
+        prak2: "1. Banyak laptop siswa lemot karena penuh file sampah dan belum instal ulang.\n2. Jaringan Wi-Fi rumah warga sering mengalami kendala jangkauan.\n3. Motor siswa butuh pengecekan rem, rantai, dan ganti oli rutin.",
+        prak3: "1. Klinik Optimasi Software & Pembersihan Laptop.\n2. Jasa Setting Router & Perluasan Jaringan Wi-Fi Rumah.\n3. Bengkel Servis Ringan & Tune-Up Motor Siswa.",
+        prak4: "Memilih 'Klinik Laptop & Instalasi Software Pelajar' sesuai kompetensi TKJ/RPL dengan kebutuhan tinggi menjelang ujian.",
+        prakSwotS: "Didukung kompetensi keahlian jurusan SMK dan bimbingan guru produktif.",
+        prakSwotW: "Ketersediaan suku cadang fisik harus dipesan terlebih dahulu.",
+        prakSwotO: "Hampir seluruh siswa dan guru menggunakan laptop untuk tugas dan pembelajaran.",
+        prakSwotT: "Pusat servis resmi di pusat kota.",
+        prak6: "Siswa SMK, guru, dan warga perumahan sekitar sekolah.",
+        prak7: "Paket Servis Sehat Laptop (Bersih Debu + Optimasi Sistem + Instal Aplikasi Belajar) Rp35.000.",
+        prak8: "Sangat layak dijalankan sebagai unit produksi jasa berbasis kompetensi keahlian SMK."
+      }
+    };
+
+    function fillPraktikumTemplate(key) {
+      playSFX('click');
+      const t = prakTemplates[key];
+      if (!t) return;
+      Object.keys(t).forEach(fieldId => {
+        const el = document.getElementById(fieldId);
+        if (el) el.value = t[fieldId];
+      });
+      showToast('Contoh ide usaha berhasil diisikan! Silakan modifikasi sesuai pengamatanmu.');
+    }
+
+    function savePraktikum() {
+      playSFX('correct');
+      const fields = ['prakNama', 'prakJurusan', 'prak1', 'prak2', 'prak3', 'prak4', 'prakSwotS', 'prakSwotW', 'prakSwotO', 'prakSwotT', 'prak6', 'prak7', 'prak8'];
+      const data = {};
+      fields.forEach(id => { data[id] = document.getElementById(id).value; });
+      appState.praktikum = data;
+      if (data.prakNama) appState.studentName = data.prakNama;
+      saveState();
+      showToast('✅ Hasil praktikum berhasil disimpan ke perangkat!');
+    }
+
+    function copyPraktikumToLKPD() {
+      savePraktikum();
+      const p = appState.praktikum;
+      document.getElementById('lkpdNama').value = p.prakNama || '';
+      document.getElementById('lkpdKelas').value = p.prakJurusan || '';
+      document.getElementById('lkpdM1').value = p.prak2 || '';
+      document.getElementById('lkpdP1').value = p.prak3 || '';
+      document.getElementById('lkpdI1').value = p.prak4 || '';
+      document.getElementById('lkpdSwotS').value = p.prakSwotS || '';
+      document.getElementById('lkpdSwotW').value = p.prakSwotW || '';
+      document.getElementById('lkpdSwotO').value = p.prakSwotO || '';
+      document.getElementById('lkpdSwotT').value = p.prakSwotT || '';
+      document.getElementById('lkpdTarget').value = p.prak6 || '';
+      document.getElementById('lkpdProduk').value = p.prak7 || '';
+      document.getElementById('lkpdKesimpulan').value = p.prak8 || '';
+      saveLKPD();
+      navigateTo('lkpd');
+      showToast('📋 Data praktikum berhasil disalin ke LKPD Digital!');
+    }
+
+    function confirmResetPraktikum() {
+      playSFX('click');
+      openModal(`
+        <h3 style="color:#fca5a5; margin-bottom:10px;">⚠️ Konfirmasi Reset Praktikum</h3>
+        <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:18px;">Apakah kamu yakin ingin menghapus seluruh isian lembar praktikum ini?</p>
+        <div style="display:flex; gap:10px; justify-content:flex-end;">
+          <button class="btn btn-glass" onclick="closeModal()">Batal</button>
+          <button class="btn btn-danger" onclick="executeResetPraktikum()">Ya, Hapus Semua</button>
+        </div>
+      `);
+    }
+
+    function executeResetPraktikum() {
+      const fields = ['prakNama', 'prakJurusan', 'prak1', 'prak2', 'prak3', 'prak4', 'prakSwotS', 'prakSwotW', 'prakSwotO', 'prakSwotT', 'prak6', 'prak7', 'prak8'];
+      fields.forEach(id => { document.getElementById(id).value = ''; });
+      appState.praktikum = {};
+      saveState();
+      closeModal();
+      showToast('🗑️ Isian praktikum telah dikosongkan.');
+    }
+
+    /* ==========================================================================
+       7. ENGINE MENU 4: GAME EDUKASI (3 GAME INTERAKTIF + LEVEL + TIMER + BADGE)
+       ========================================================================== */
+    let gameDiff = 'mudah';
+    let gameTimer = null;
+    let activeGameNum = 1;
+    let gameQIdx = 0;
+    let sessionPoints = 0;
+
+    const gamesBank = {
+      1: {
+        name: "Detektif Peluang Usaha",
+        badge: "🕵️ Detektif Peluang Andal",
+        questions: [
+          {
+            scene: "🌧️ Situasi: Memasuki musim hujan, banyak siswa SMK berangkat naik motor dan sepatu mereka sering basah kuyup saat tiba di sekolah.",
+            q: "Peluang usaha apa yang paling tepat ditawarkan oleh siswa kreatif?",
+            opts: [
+              "Jasa Sewa Jas Hujan, Shoe Cover Anti Air & Pengering Sepatu Express",
+              "Menjual es krim serut di halaman parkir terbuka",
+              "Membuka jasa cuci motor tanpa atap pelindung",
+              "Menjual kacamata hitam anti UV"
+            ],
+            ans: 0
+          },
+          {
+            scene: "📱 Situasi: Banyak pedagang bakso dan warung makan di sekitar SMK PERINTIS Adiluhur memiliki rasa enak, namun sepi pembeli dari luar karena tidak ada di Google Maps dan Instagram.",
+            q: "Sebagai siswa SMK melek teknologi, peluang usaha apa yang bisa kamu ciptakan?",
+            opts: [
+              "Menyuruh pedagang menutup warungnya",
+              "Jasa Digitalisasi UMKM (Daftar Google Maps, Foto Menu & Paket Promosi Sosmed)",
+              "Membuka toko buku tulis di sebelah warung",
+              "Menjual peralatan olahraga berat"
+            ],
+            ans: 1
+          },
+          {
+            scene: "⚡ Situasi: Menjelang ujian praktik dan presentasi tugas proyek, banyak siswa panik karena baterai HP habis dan lupa membawa kabel charger atau flashdisk.",
+            q: "Peluang usaha mikro yang paling dibutuhkan di lingkungan kelas adalah...",
+            opts: [
+              "Menjual tiket perjalanan wisata luar negeri",
+              "Rental Powerbank Harian, Jasa Print Kilat & Jual Kabel Data Bergaransi",
+              "Membuka jasa renovasi rumah",
+              "Menjual bibit tanaman hias langka"
+            ],
+            ans: 1
+          },
+          {
+            scene: "🥗 Situasi: Banyak guru dan siswi ingin menjaga pola makan sehat, tetapi di sekitar sekolah hanya tersedia gorengan berminyak.",
+            q: "Peluang usaha kuliner apa yang menjawab kesenjangan pasar tersebut?",
+            opts: [
+              "Salad Buah Segar, Sandwich Gandum & Infused Water Pre-Order",
+              "Menambah pedagang gorengan yang sama persis",
+              "Menjual mie instan mentah tanpa seduh",
+              "Membuka toko bahan bangunan"
+            ],
+            ans: 0
+          }
+        ]
+      },
+      2: {
+        name: "Tebak Strategi Bisnis",
+        badge: "♟️ Ahli Strategi Bisnis",
+        questions: [
+          {
+            scene: "📊 Situasi SWOT: Usahamu memiliki produk keripik singkong yang sangat enak (Strength) dan peminat online tinggi (Opportunity), tetapi pesaing mulai meniru kemasanmu (Threat).",
+            q: "Strategi bisnis terbaik yang harus kamu ambil adalah...",
+            opts: [
+              "Menghentikan produksi karena takut bersaing",
+              "Menurunkan kualitas bahan baku agar harga lebih murah",
+              "Mendaftarkan merek, menciptakan varian rasa eksklusif, & memberi stiker segel keaslian",
+              "Memarahi pesaing di media sosial"
+            ],
+            ans: 2
+          },
+          {
+            scene: "💬 Situasi Pelanggan: Seorang pembeli mengeluh kemasan minuman yang dipesannya sedikit bocor saat diantar ke kelas.",
+            q: "Keputusan profesional apa yang menjaga loyalitas pelanggan?",
+            opts: [
+              "Menyalahkan pembeli karena kurang hati-hati",
+              "Meminta maaf dengan ramah, segera mengganti produk baru, & mengevaluasi seal tutup cup",
+              "Memblokir nomor WhatsApp pelanggan tersebut",
+              "Mengabaikan pesan keluhan tersebut"
+            ],
+            ans: 1
+          },
+          {
+            scene: "🎯 Situasi Pemasaran: Produk desain postermu berkualitas tinggi, tetapi masih sedikit siswa yang mengetahui jasamu.",
+            q: "Strategi promosi berbiaya rendah namun efektif di lingkungan SMK adalah...",
+            opts: [
+              "Memasang iklan di televisi nasional",
+              "Membuat portofolio menarik di Instagram/WhatsApp Status & memberi diskon khusus pengurus OSIS/Ekskul",
+              "Menunggu pelanggan datang sendiri tanpa promosi",
+              "Mencetak ribuan brosur untuk disebar di jalan tol"
+            ],
+            ans: 1
+          },
+          {
+            scene: "📦 Situasi Produksi: Permintaan hampers wisuda melonjak 3 kali lipat minggu depan, sedangkan tenagamu terbatas (Weakness).",
+            q: "Bagaimana strategi operasional yang paling cerdas?",
+            opts: [
+              "Menerima semua pesanan tanpa batas lalu terlambat mengirim",
+              "Membuka sistem kuota Pre-Order terjadwal & berkolaborasi dengan teman sekelas sebagai tim produksi",
+              "Menolak seluruh pesanan yang masuk",
+              "Mengurangi isi paket hampers tanpa memberi tahu pembeli"
+            ],
+            ans: 1
+          }
+        ]
+      },
+      3: {
+        name: "Tantangan Pengusaha Muda",
+        badge: "🏆 CEO Muda Berprestasi",
+        questions: [
+          {
+            scene: "💰 Tantangan Modal: Kamu memiliki modal awal Rp500.000 untuk memulai usaha camilan sehat di sekolah.",
+            q: "Alokasi modal awal manakah yang paling bijak bagi pengusaha pemula?",
+            opts: [
+              "Menghabiskan Rp450.000 untuk membeli meja mewah dan Rp50.000 untuk bahan",
+              "Mengalokasikan dana terukur untuk bahan baku, kemasan higienis, promosi awal, & dana cadangan kas",
+              "Menggunakan seluruh modal untuk jajan pribadi dulu",
+              "Membeli bahan baku berlebihan untuk stok 6 bulan tanpa survei pembeli"
+            ],
+            ans: 1
+          },
+          {
+            scene: "🧮 Tantangan Harga: Biaya bahan dan kemasan 1 kotak salad buah adalah Rp6.000. Biaya tetap harian Rp40.000. Kamu menargetkan jual 20 kotak/hari.",
+            q: "Berapa harga jual per kotak agar kamu meraih keuntungan sehat dan tetap ramah kantong pelajar?",
+            opts: [
+              "Rp5.500 (di bawah biaya bahan)",
+              "Rp6.000 (tidak ada margin sama sekali)",
+              "Rp10.000 (margin Rp4.000/kotak, BEP tercapai di 10 kotak, sisanya laba bersih)",
+              "Rp50.000 (terlalu mahal untuk kantong pelajar)"
+            ],
+            ans: 2
+          },
+          {
+            scene: "📈 Tantangan Pengembangan: Di bulan pertama usahamu menghasilkan laba bersih Rp600.000.",
+            q: "Langkah keuangan apa yang dilakukan pengusaha muda sukses?",
+            opts: [
+              "Menghabiskan seluruh laba untuk belanja konsumtif",
+              "Memisahkan uang pribadi dan uang usaha, lalu menginvestasikan kembali sebagian laba untuk menambah kapasitas",
+              "Tidak mencatat pemasukan dan pengeluaran sama sekali",
+              "Menutup usaha karena merasa sudah cukup kaya"
+            ],
+            ans: 1
+          }
+        ]
+      }
+    };
+
+    function setGameDifficulty(diff, btnEl) {
+      playSFX('click');
+      gameDiff = diff;
+      document.querySelectorAll('.diff-btn').forEach(b => {
+        b.classList.remove('btn-teal', 'active');
+        b.classList.add('btn-glass');
+      });
+      btnEl.classList.remove('btn-glass');
+      btnEl.classList.add('btn-teal', 'active');
+      showToast(`Tingkat kesulitan diatur ke: ${diff.toUpperCase()}`);
+    }
+
+    function getTimeLimitByDiff() {
+      if (gameDiff === 'mudah') return 25;
+      if (gameDiff === 'sedang') return 18;
+      return 12;
+    }
+
+    function startGame(num) {
+      playSFX('click');
+      clearInterval(gameTimer);
+      activeGameNum = num;
+      gameQIdx = 0;
+      sessionPoints = 0;
+      renderGameQuestion();
+    }
+
+    function renderGameQuestion() {
+      clearInterval(gameTimer);
+      const gameObj = gamesBank[activeGameNum];
+      const arena = document.getElementById('gameArena');
+
+      if (gameQIdx >= gameObj.questions.length) {
+        // Game selesai!
+        playSFX('correct');
+        appState.gameScore += sessionPoints;
+        if (sessionPoints >= 60 && !appState.gameBadges.includes(gameObj.badge)) {
+          appState.gameBadges.push(gameObj.badge);
+        }
+        saveState();
+        renderBadgesUI();
+
+        arena.innerHTML = `
+          <div style="text-align:center; padding:20px;">
+            <div style="font-size:3.2rem; margin-bottom:10px;">🎉🏆🎉</div>
+            <h3 style="font-size:1.5rem; color:#5eead4;">Misi ${gameObj.name} Selesai!</h3>
+            <p style="font-size:1.1rem; margin:10px 0;">Poin Sesi Ini: <strong style="color:#facc15;">+${sessionPoints} Poin</strong></p>
+            <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:18px;">
+              ${sessionPoints >= 60 ? `Selamat! Kamu meraih penghargaan <strong>${gameObj.badge}</strong>!` : 'Mainkan lagi dan raih minimal 60 poin untuk membuka badge penghargaan!'}
+            </p>
+            <div style="display:flex; justify-content:center; flex-wrap:wrap; gap:10px;">
+              <button class="btn btn-orange" onclick="startGame(${activeGameNum})">🔄 Bermain Kembali</button>
+              <button class="btn btn-purple" onclick="startGame(${activeGameNum < 3 ? activeGameNum + 1 : 1})">➡️ Coba Game Lainnya</button>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      const qObj = gameObj.questions[gameQIdx];
+      const maxTime = getTimeLimitByDiff();
+      let timeLeft = maxTime;
+
+      arena.innerHTML = `
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+          <span class="badge-tag tag-purple">${gameObj.name} • Level ${gameDiff.toUpperCase()}</span>
+          <div>Skor Sesi: <strong style="color:#facc15;">${sessionPoints}</strong> | Soal ${gameQIdx + 1}/${gameObj.questions.length}</div>
+        </div>
+        <div class="timer-bar-wrap"><div class="timer-bar" id="gameTimerBar"></div></div>
+        <div class="case-box" style="margin-bottom:14px;">${qObj.scene}</div>
+        <h4 style="margin-bottom:14px; font-size:1.05rem;">${qObj.q}</h4>
+        <div id="gameOptsList">
+          ${qObj.opts.map((opt, idx) => `
+            <button class="quiz-option" onclick="handleGameAnswer(${idx}, this)">
+              ${String.fromCharCode(65 + idx)}. ${opt}
+            </button>
+          `).join('')}
+        </div>
+        <div id="gameFeedback" style="margin-top:12px; font-weight:700;"></div>
+      `;
+
+      gameTimer = setInterval(() => {
+        timeLeft -= 0.25;
+        const pct = Math.max(0, (timeLeft / maxTime) * 100);
+        const bar = document.getElementById('gameTimerBar');
+        if (bar) bar.style.width = pct + '%';
+
+        if (timeLeft <= 0) {
+          clearInterval(gameTimer);
+          playSFX('wrong');
+          document.getElementById('gameFeedback').innerHTML = `<span style="color:#f87171;">⏰ Waktu Habis! Lanjut ke tantangan berikutnya...</span>`;
+          setTimeout(() => { gameQIdx++; renderGameQuestion(); }, 1500);
+        }
+      }, 250);
+    }
+
+    function handleGameAnswer(chosenIdx, btnEl) {
+      clearInterval(gameTimer);
+      const qObj = gamesBank[activeGameNum].questions[gameQIdx];
+      const btns = document.querySelectorAll('#gameOptsList .quiz-option');
+      btns.forEach(b => b.disabled = true);
+
+      const fb = document.getElementById('gameFeedback');
+      const mult = gameDiff === 'sulit' ? 40 : (gameDiff === 'sedang' ? 30 : 25);
+
+      if (chosenIdx === qObj.ans) {
+        playSFX('correct');
+        btnEl.classList.add('correct');
+        sessionPoints += mult;
+        fb.innerHTML = `<span style="color:#10b981;">✅ Keputusan Cerdas! +${mult} Poin Penghargaan!</span>`;
+      } else {
+        playSFX('wrong');
+        btnEl.classList.add('wrong');
+        btns[qObj.ans].classList.add('correct');
+        fb.innerHTML = `<span style="color:#f87171;">❌ Kurang tepat! Perhatikan opsi hijau sebagai strategi terbaik.</span>`;
+      }
+
+      setTimeout(() => {
+        gameQIdx++;
+        renderGameQuestion();
+      }, 1550);
+    }
+
+    function renderBadgesUI() {
+      document.getElementById('totalGamePoints').textContent = `${appState.gameScore} Poin`;
+      const wrap = document.getElementById('gameBadgesList');
+      if (appState.gameBadges.length === 0) {
+        wrap.innerHTML = `<span style="font-size:0.82rem; color:var(--text-dim);">Belum ada badge. Selesaikan game untuk meraih badge!</span>`;
+      } else {
+        wrap.innerHTML = appState.gameBadges.map(b => `<span class="earned-badge">${b}</span>`).join('');
+      }
+    }
+
+    /* ==========================================================================
+       8. ENGINE MENU 5: LKPD DIGITAL (SIMPAN, CETAK, PDF, RESET)
+       ========================================================================== */
+    const lkpdFields = [
+      'lkpdNama', 'lkpdKelas', 'lkpdKelompok', 'lkpdTanggal',
+      'lkpdM1', 'lkpdP1', 'lkpdI1', 'lkpdM2', 'lkpdP2', 'lkpdI2', 'lkpdM3', 'lkpdP3', 'lkpdI3',
+      'lkpdSwotS', 'lkpdSwotW', 'lkpdSwotO', 'lkpdSwotT',
+      'lkpdTarget', 'lkpdProduk', 'lkpdKesimpulan', 'lkpdRefleksi'
+    ];
+
+    function saveLKPD() {
+      playSFX('correct');
+      const data = {};
+      lkpdFields.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) data[id] = el.value;
+      });
+      appState.lkpd = data;
+      if (data.lkpdNama) appState.studentName = data.lkpdNama;
+      saveState();
+      showToast('💾 LKPD Digital berhasil disimpan! Pekerjaanmu aman di browser.');
+    }
+
+    function loadLKPDToUI() {
+      if (!appState.lkpd) return;
+      lkpdFields.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && appState.lkpd[id] !== undefined) el.value = appState.lkpd[id];
+      });
+      if (appState.praktikum) {
+        Object.keys(appState.praktikum).forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.value = appState.praktikum[id];
+        });
+      }
+    }
+
+    function printLKPD() {
+      saveLKPD();
+      showToast('🖨️ Membuka dialog Cetak / Simpan sebagai PDF...');
+      setTimeout(() => { window.print(); }, 400);
+    }
+
+    function confirmResetLKPD() {
+      playSFX('click');
+      openModal(`
+        <h3 style="color:#fca5a5; margin-bottom:10px;">⚠️ Konfirmasi Reset LKPD Digital</h3>
+        <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:18px;">Seluruh tabel dan jawaban LKPD Digital akan dikosongkan. Lanjutkan?</p>
+        <div style="display:flex; gap:10px; justify-content:flex-end;">
+          <button class="btn btn-glass" onclick="closeModal()">Batal</button>
+          <button class="btn btn-danger" onclick="executeResetLKPD()">Ya, Reset LKPD</button>
+        </div>
+      `);
+    }
+
+    function executeResetLKPD() {
+      lkpdFields.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = '';
+      });
+      appState.lkpd = {};
+      saveState();
+      closeModal();
+      showToast('🗑️ Seluruh isian LKPD berhasil direset.');
+    }
+
+    /* ==========================================================================
+       9. ENGINE MENU 6: EVALUASI PEMBELAJARAN (15 PG + 5 B/S + 3 STUDI KASUS)
+       ========================================================================== */
+    const evaluationBank = [
+      // 15 PILIHAN GANDA
+      {
+        type: "Pilihan Ganda", diff: "Mudah",
+        q: "1. Kesempatan atau waktu yang tepat yang dapat dimanfaatkan wirausahawan untuk memperoleh keuntungan dengan memenuhi kebutuhan konsumen disebut...",
+        opts: ["Risiko usaha", "Peluang usaha", "Kerugian modal", "Persaingan bebas"],
+        ans: 1,
+        exp: "Peluang usaha adalah kesempatan yang tepat untuk meraih keuntungan melalui pemecahan masalah atau pemenuhan kebutuhan pasar."
+      },
+      {
+        type: "Pilihan Ganda", diff: "Mudah",
+        q: "2. Seorang siswa SMK jurusan DKV membuka jasa desain logo dan kemasan UMKM. Sumber peluang usaha tersebut berasal dari...",
+        opts: ["Keahlian dan pendidikan", "Perubahan cuaca", "Pinjaman bank", "Kebetulan semata"],
+        ans: 0,
+        exp: "Kompetensi keahlian yang dipelajari di SMK merupakan sumber peluang usaha internal yang sangat kuat."
+      },
+      {
+        type: "Pilihan Ganda", diff: "Mudah",
+        q: "3. Dalam menganalisis peluang usaha, huruf 'O' pada analisis SWOT merupakan singkatan dari...",
+        opts: ["Organization (Organisasi)", "Opportunity (Peluang)", "Operation (Operasi)", "Output (Keluaran)"],
+        ans: 1,
+        exp: "SWOT terdiri dari Strengths (Kekuatan), Weaknesses (Kelemahan), Opportunities (Peluang), dan Threats (Ancaman)."
+      },
+      {
+        type: "Pilihan Ganda", diff: "Mudah",
+        q: "4. Metode mengadopsi ide usaha yang sudah ada lalu memberikan sentuhan inovasi baru dikenal dengan istilah ATM, yaitu...",
+        opts: ["Analisis, Target, Modal", "Amati, Tiru, Modifikasi", "Atur, Tentukan, Marketing", "Ambil, Tukar, Manfaatkan"],
+        ans: 1,
+        exp: "ATM (Amati, Tiru, Modifikasi) membantu wirausahawan belajar dari keberhasilan pasar lalu menciptakan keunikan sendiri."
+      },
+      {
+        type: "Pilihan Ganda", diff: "Mudah",
+        q: "5. Berikut ini yang termasuk faktor internal dalam analisis SWOT adalah...",
+        opts: ["Strength dan Weakness", "Opportunity dan Threat", "Strength dan Threat", "Weakness dan Opportunity"],
+        ans: 0,
+        exp: "Strength (kekuatan) dan Weakness (kelemahan) berasal dari dalam usaha itu sendiri (internal)."
+      },
+      {
+        type: "Pilihan Ganda", diff: "Sedang",
+        q: "6. Mengapa analisis kebutuhan konsumen wajib dilakukan sebelum memproduksi barang secara massal?",
+        opts: [
+          "Agar biaya produksi menjadi semahal mungkin",
+          "Untuk memastikan produk sesuai dengan masalah, selera, dan daya beli calon konsumen",
+          "Supaya produk tidak perlu dipromosikan lagi",
+          "Agar pesaing tidak bisa berjualan di daerah yang sama"
+        ],
+        ans: 1,
+        exp: "Produk yang dibuat berdasarkan kebutuhan nyata pasar memiliki peluang laku jauh lebih tinggi dan meminimalkan risiko barang tidak terjual."
+      },
+      {
+        type: "Pilihan Ganda", diff: "Sedang",
+        q: "7. Peluang usaha yang baik harus bersifat 'sustainable', artinya...",
+        opts: [
+          "Hanya laku selama satu minggu saat viral",
+          "Membutuhkan modal sangat besar di awal",
+          "Mampu bertahan dan berkembang secara berkelanjutan dalam jangka panjang",
+          "Tidak memerlukan inovasi produk sama sekali"
+        ],
+        ans: 2,
+        exp: "Sustainable berarti usaha memiliki prospek jangka panjang dan tidak sekadar musiman sesaat."
+      },
+      {
+        type: "Pilihan Ganda", diff: "Sedang",
+        q: "8. Penentuan kelompok konsumen spesifik yang akan dilayani oleh sebuah usaha disebut...",
+        opts: ["Target pasar (Target Market)", "Likuidasi aset", "Biaya penyusutan", "Distribusi tunggal"],
+        ans: 0,
+        exp: "Target pasar adalah segmen konsumen spesifik yang menjadi sasaran utama penjualan produk/jasa."
+      },
+      {
+        type: "Pilihan Ganda", diff: "Sedang",
+        q: "9. Kenaikan harga bahan baku gula dan cokelat di pasaran bagi usaha minuman kekinian termasuk dalam faktor SWOT bagian...",
+        opts: ["Strength", "Weakness", "Opportunity", "Threat"],
+        ans: 3,
+        exp: "Kenaikan harga bahan baku berasal dari luar kendali usaha dan berpotensi mengurangi laba, sehingga termasuk Threat (Ancaman)."
+      },
+      {
+        type: "Pilihan Ganda", diff: "Sedang",
+        q: "10. Jika biaya tetap suatu usaha adalah Rp100.000, harga jual produk Rp15.000/unit, dan biaya variabel Rp10.000/unit, maka BEP unitnya adalah...",
+        opts: ["10 unit", "15 unit", "20 unit", "25 unit"],
+        ans: 2,
+        exp: "BEP unit = Biaya Tetap / (Harga Jual - Biaya Variabel) = 100.000 / (15.000 - 10.000) = 100.000 / 5.000 = 20 unit."
+      },
+      {
+        type: "Pilihan Ganda", diff: "Sulit",
+        q: "11. Strategi SO (Strength-Opportunity) dalam matriks SWOT dilakukan dengan cara...",
+        opts: [
+          "Menggunakan kekuatan internal usaha untuk memanfaatkan peluang eksternal secara maksimal",
+          "Mengurangi kekuatan agar kelemahan tidak terlihat",
+          "Menutup usaha saat muncul ancaman pesaing",
+          "Menunggu pesaing bangkrut terlebih dahulu"
+        ],
+        ans: 0,
+        exp: "Strategi SO bersifat agresif/ekspansif dengan mengoptimalkan kekuatan internal untuk menangkap peluang pasar."
+      },
+      {
+        type: "Pilihan Ganda", diff: "Sulit",
+        q: "12. Siswa menjual 40 porsi rice bowl seharga Rp12.000/porsi. Biaya variabel Rp7.000/porsi dan biaya tetap harian Rp80.000. Berapa laba bersih yang diperoleh?",
+        opts: ["Rp120.000", "Rp200.000", "Rp280.000", "Rp480.000"],
+        ans: 0,
+        exp: "Omzet = 40 x 12.000 = 480.000. Total Biaya = 80.000 + (40 x 7.000) = 360.000. Laba = 480.000 - 360.000 = Rp120.000."
+      },
+      {
+        type: "Pilihan Ganda", diff: "Sulit",
+        q: "13. Unique Selling Proposition (USP) dalam perancangan peluang usaha berfungsi untuk...",
+        opts: [
+          "Menyamakan produk kita dengan seluruh produk pesaing",
+          "Menonjolkan keunikan utama yang membuat konsumen memilih produk kita dibanding pesaing",
+          "Menghilangkan biaya kemasan produk",
+          "Membatasi jumlah pembeli yang datang"
+        ],
+        ans: 1,
+        exp: "USP adalah nilai pembeda unik yang menjadi alasan kuat konsumen membeli produk kita."
+      },
+      {
+        type: "Pilihan Ganda", diff: "Sulit",
+        q: "14. Sistem penjualan Pre-Order (PO) sangat direkomendasikan bagi wirausaha pelajar SMK karena...",
+        opts: [
+          "Membuat modal tertahan lama di gudang",
+          "Meminimalkan risiko produk tidak laku dan menekan kebutuhan modal kerja awal",
+          "Mengharuskan siswa menyewa ruko mahal",
+          "Mengurangi kualitas rasa produk"
+        ],
+        ans: 1,
+        exp: "Dengan Pre-Order, jumlah produksi sesuai pesanan pasti sehingga risiko kerugian akibat barang sisa sangat kecil."
+      },
+      {
+        type: "Pilihan Ganda", diff: "Sulit",
+        q: "15. Suatu usaha dinyatakan mencapai Break Even Point (BEP) apabila...",
+        opts: [
+          "Total pendapatan (omzet) sama persis dengan total biaya yang dikeluarkan (laba = 0)",
+          "Keuntungan mencapai 200% dari modal",
+          "Seluruh karyawan mengundurkan diri",
+          "Biaya variabel lebih besar dari harga jual"
+        ],
+        ans: 0,
+        exp: "BEP atau titik impas adalah kondisi di mana usaha tidak untung dan tidak rugi (Omzet = Total Biaya)."
+      },
+
+      // 5 SOAL BENAR / SALAH
+      {
+        type: "Benar / Salah", diff: "Mudah",
+        q: "16. [BENAR / SALAH] Setiap ide kreatif yang muncul di pikiran otomatis merupakan peluang usaha yang menguntungkan tanpa perlu menguji kebutuhan pasar.",
+        opts: ["Benar", "Salah"],
+        ans: 1,
+        exp: "Salah. Ide baru menjadi peluang usaha apabila terbukti dibutuhkan pasar, layak secara finansial, dan dapat dieksekusi."
+      },
+      {
+        type: "Benar / Salah", diff: "Mudah",
+        q: "17. [BENAR / SALAH] Keterbatasan modal dan belum dikenalnya merek usaha termasuk dalam kategori Weakness (Kelemahan) pada analisis SWOT.",
+        opts: ["Benar", "Salah"],
+        ans: 0,
+        exp: "Benar. Modal terbatas dan merek baru merupakan faktor keterbatasan dari dalam usaha (Weakness)."
+      },
+      {
+        type: "Benar / Salah", diff: "Sedang",
+        q: "18. [BENAR / SALAH] Rumus menghitung Omzet penjualan adalah: Harga Jual per Unit dikalikan Jumlah Produk yang Terjual.",
+        opts: ["Benar", "Salah"],
+        ans: 0,
+        exp: "Benar. Omzet adalah total pendapatan kotor sebelum dikurangi biaya-biaya."
+      },
+      {
+        type: "Benar / Salah", diff: "Sedang",
+        q: "19. [BENAR / SALAH] Masalah atau keluhan masyarakat di lingkungan sekitar justru merupakan salah satu sumber utama lahirnya peluang usaha.",
+        opts: ["Benar", "Salah"],
+        ans: 0,
+        exp: "Benar. Bisnis yang sukses hadir sebagai solusi atas masalah nyata yang dialami konsumen."
+      },
+      {
+        type: "Benar / Salah", diff: "Sulit",
+        q: "20. [BENAR / SALAH] Jika biaya variabel per unit lebih tinggi daripada harga jual per unit, maka meningkatkan jumlah penjualan akan mempercepat keuntungan.",
+        opts: ["Benar", "Salah"],
+        ans: 1,
+        exp: "Salah. Jika harga jual lebih rendah dari biaya variabel per unit, setiap penjualan justru menambah kerugian."
+      },
+
+      // 3 SOAL STUDI KASUS
+      {
+        type: "Studi Kasus", diff: "Sedang",
+        q: "21. [STUDI KASUS 1] Rina (kelas XII) melihat banyak siswa sering terlambat mengumpulkan tugas cetak karena tempat fotokopi jauh dari sekolah. Rina memiliki printer warna di rumah. Keputusan peluang usaha paling tepat bagi Rina adalah...",
+        opts: [
+          "Membuka jasa 'Print & Jilid Kilat Terima File via WhatsApp' dengan pengantaran pagi di sekolah",
+          "Menjual printer miliknya untuk membeli camilan",
+          "Membuka jasa servis sepeda motor",
+          "Menyewakan buku cerita lama"
+        ],
+        ans: 0,
+        exp: "Rina memanfaatkan sumber daya yang sudah dimiliki (printer) untuk menjawab masalah nyata teman sekolah secara praktis."
+      },
+      {
+        type: "Studi Kasus", diff: "Sulit",
+        q: "22. [STUDI KASUS 2] Kelompok usaha 'Es Kopi Susu Gula Aren SMK' mengeluarkan modal awal Rp400.000, biaya tetap Rp40.000, biaya variabel Rp6.000/gelas, dan harga jual Rp10.000/gelas. Jika hari ini terjual 25 gelas, bagaimana status kelayakan usahanya?",
+        opts: [
+          "Rugi Rp60.000 karena belum mencapai BEP",
+          "Layak dikembangkan karena sudah melampaui BEP (10 gelas) dan menghasilkan laba bersih Rp60.000 hari ini",
+          "Impas (laba Rp0) sehingga harus segera ditutup",
+          "Harga jual terlalu rendah di bawah biaya variabel"
+        ],
+        ans: 1,
+        exp: "Omzet = 25 x 10.000 = 250.000. Total Biaya = 40.000 + (25 x 6.000) = 190.000. Laba = Rp60.000 (BEP = 40.000 / 4.000 = 10 gelas)."
+      },
+      {
+        type: "Studi Kasus", diff: "Sulit",
+        q: "23. [STUDI KASUS 3] Usaha kerajinan totebag perca siswa SMK memiliki kualitas jahitan sangat rapi (Strength), tetapi penjualannya stagnan karena hanya ditawarkan dari mulut ke mulut di satu kelas. Langkah strategis terbaik berdasarkan analisis SWOT adalah...",
+        opts: [
+          "Memanfaatkan peluang digital (Opportunity) dengan membuat katalog Instagram/TikTok & sistem custom desain",
+          "Menurunkan kualitas jahitan agar cepat selesai",
+          "Menaikkan harga 3 kali lipat tanpa mengubah promosi",
+          "Menyimpan seluruh stok totebag di lemari kelas"
+        ],
+        ans: 0,
+        exp: "Strategi SO: menggabungkan kekuatan kualitas produk dengan peluang pemasaran digital untuk memperluas jangkauan target pasar."
+      }
+    ];
+
+    let activeEvalQuestions = [];
+    let evalAnswers = [];
+    let currentEvalIdx = 0;
+    let evalKKMValue = 75;
+
+    function startEvaluation(shuffle) {
+      playSFX('click');
+      const nameInput = document.getElementById('evalStudentName').value.trim();
+      if (nameInput) {
+        appState.studentName = nameInput;
+        saveState();
+      }
+      evalKKMValue = Math.min(100, Math.max(50, +document.getElementById('evalKKM').value || 75));
+
+      activeEvalQuestions = evaluationBank.map((item, idx) => ({ ...item, origId: idx }));
+      if (shuffle) {
+        for (let i = activeEvalQuestions.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [activeEvalQuestions[i], activeEvalQuestions[j]] = [activeEvalQuestions[j], activeEvalQuestions[i]];
+        }
+      }
+
+      evalAnswers = new Array(activeEvalQuestions.length).fill(null);
+      currentEvalIdx = 0;
+
+      document.getElementById('evalSetupBox').style.display = 'none';
+      document.getElementById('evalResultBox').style.display = 'none';
+      document.getElementById('evalQuizBox').style.display = 'block';
+      document.getElementById('evalQTotal').textContent = activeEvalQuestions.length;
+
+      renderEvalQuestion();
+    }
+
+    function renderEvalQuestion() {
+      const qObj = activeEvalQuestions[currentEvalIdx];
+      document.getElementById('evalQIndex').textContent = currentEvalIdx + 1;
+      document.getElementById('evalQType').textContent = qObj.type;
+      document.getElementById('evalQDiff').textContent = qObj.diff;
+      document.getElementById('evalQuestionText').textContent = qObj.q;
+
+      // Render nomor indikator soal
+      const dotsHtml = activeEvalQuestions.map((_, i) => {
+        const answered = evalAnswers[i] !== null;
+        const isCurr = i === currentEvalIdx;
+        let bg = 'rgba(255,255,255,0.08)';
+        let border = '1px solid rgba(255,255,255,0.2)';
+        if (answered) { bg = 'rgba(20,184,166,0.35)'; border = '1px solid #14b8a6'; }
+        if (isCurr) { bg = '#8b5cf6'; border = '1px solid #fff'; }
+        return `<button onclick="jumpEvalQuestion(${i})" style="width:30px; height:30px; border-radius:8px; background:${bg}; border:${border}; color:#fff; font-size:0.78rem; font-weight:700; cursor:pointer;">${i + 1}</button>`;
+      }).join('');
+      document.getElementById('evalNavDots').innerHTML = dotsHtml;
+
+      // Render pilihan jawaban
+      const chosen = evalAnswers[currentEvalIdx];
+      document.getElementById('evalOptionsArea').innerHTML = qObj.opts.map((opt, oIdx) => {
+        let cls = 'quiz-option';
+        if (chosen !== null) {
+          if (oIdx === qObj.ans) cls += ' correct';
+          else if (oIdx === chosen) cls += ' wrong';
+        }
+        return `
+          <button class="${cls}" onclick="selectEvalOption(${oIdx})">
+            ${qObj.type === 'Benar / Salah' ? '' : String.fromCharCode(65 + oIdx) + '. '}${opt}
+          </button>
+        `;
+      }).join('');
+
+      // Umpan balik langsung setelah menjawab
+      const fb = document.getElementById('evalFeedbackArea');
+      if (chosen !== null) {
+        const isRight = chosen === qObj.ans;
+        fb.innerHTML = `
+          <div class="infographic-box" style="margin:0; border-color:${isRight ? '#10b981' : '#ef4444'};">
+            <strong style="color:${isRight ? '#10b981' : '#f87171'};">${isRight ? '✅ Jawaban Benar!' : '❌ Jawaban Kurang Tepat.'}</strong>
+            <p style="font-size:0.88rem; margin-top:4px; color:var(--text-muted);"><strong>Pembahasan:</strong> ${qObj.exp}</p>
+          </div>
+        `;
+      } else {
+        fb.innerHTML = '';
+      }
+
+      document.getElementById('evalPrevBtn').disabled = currentEvalIdx === 0;
+      document.getElementById('evalPrevBtn').style.opacity = currentEvalIdx === 0 ? '0.4' : '1';
+
+      if (currentEvalIdx === activeEvalQuestions.length - 1) {
+        document.getElementById('evalNextBtn').style.display = 'none';
+        document.getElementById('evalFinishBtn').style.display = 'inline-flex';
+      } else {
+        document.getElementById('evalNextBtn').style.display = 'inline-flex';
+        document.getElementById('evalFinishBtn').style.display = 'none';
+      }
+    }
+
+    function selectEvalOption(oIdx) {
+      evalAnswers[currentEvalIdx] = oIdx;
+      const isRight = oIdx === activeEvalQuestions[currentEvalIdx].ans;
+      playSFX(isRight ? 'correct' : 'wrong');
+      renderEvalQuestion();
+    }
+
+    function jumpEvalQuestion(idx) {
+      playSFX('click');
+      currentEvalIdx = idx;
+      renderEvalQuestion();
+    }
+
+    function prevEvalQuestion() {
+      if (currentEvalIdx > 0) {
+        playSFX('click');
+        currentEvalIdx--;
+        renderEvalQuestion();
+      }
+    }
+
+    function nextEvalQuestion() {
+      if (currentEvalIdx < activeEvalQuestions.length - 1) {
+        playSFX('click');
+        currentEvalIdx++;
+        renderEvalQuestion();
+      }
+    }
+
+    function finishEvaluation() {
+      const unanswered = evalAnswers.filter(a => a === null).length;
+      if (unanswered > 0) {
+        openModal(`
+          <h3 style="color:#fdba74; margin-bottom:10px;">⚠️ Masih Ada ${unanswered} Soal Belum Dijawab</h3>
+          <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:16px;">Apakah kamu ingin tetap menyelesaikan evaluasi sekarang atau kembali melengkapi jawaban?</p>
+          <div style="display:flex; gap:10px; justify-content:flex-end;">
+            <button class="btn btn-glass" onclick="closeModal()">Kembali ke Soal</button>
+            <button class="btn btn-orange" onclick="closeModal(); computeEvalResult();">Selesaikan Sekarang</button>
+          </div>
+        `);
+      } else {
+        computeEvalResult();
+      }
+    }
+
+    function computeEvalResult() {
+      let correctCount = 0;
+      activeEvalQuestions.forEach((qObj, idx) => {
+        if (evalAnswers[idx] === qObj.ans) correctCount++;
+      });
+
+      const score = Math.round((correctCount / activeEvalQuestions.length) * 100);
+      const passed = score >= evalKKMValue;
+
+      appState.evalScore = score;
+      appState.evalPassed = passed;
+      saveState();
+
+      playSFX(passed ? 'correct' : 'wrong');
+
+      let rekom = '';
+      if (score >= 90) {
+        rekom = "🌟 <strong>Predikat Sangat Baik (Istimewa):</strong> Kamu telah menguasai seluruh konsep peluang usaha, analisis SWOT, dan perhitungan kelayakan bisnis. Siap mengeksekusi proyek usaha nyata di SMK!";
+      } else if (score >= evalKKMValue) {
+        rekom = "✅ <strong>Predikat Tuntas (Kompeten):</strong> Pemahamanmu sudah melampaui batas ketuntasan. Tinjau kembali pembahasan pada soal yang masih keliru untuk menyempurnakan rancangan usahamu.";
+      } else {
+        rekom = "📚 <strong>Rekomendasi Pengayaan:</strong> Nilaimu belum mencapai batas ketuntasan (" + evalKKMValue + "). Silakan pelajari kembali <strong>Menu Materi</strong> (khususnya Analisis SWOT & Kalkulator BEP di Menu Simulasi), lalu coba ulangi evaluasi ini.";
+      }
+
+      document.getElementById('evalQuizBox').style.display = 'none';
+      const resBox = document.getElementById('evalResultBox');
+      resBox.style.display = 'block';
+
+      resBox.innerHTML = `
+        <div style="text-align:center; padding:16px 0;">
+          <span class="badge-tag ${passed ? 'tag-teal' : 'tag-orange'}">${passed ? 'LULUS / TUNTAS KKM' : 'PERLU PENGAYAAN'}</span>
+          <h3 style="font-size:1.5rem; margin:10px 0;">Hasil Akhir Evaluasi Pembelajaran</h3>
+          <div style="font-size:3.2rem; font-weight:900; color:${passed ? '#10b981' : '#f97316'}; margin:6px 0;">
+            ${score} <span style="font-size:1.1rem; color:var(--text-dim);">/ 100</span>
+          </div>
+          <p style="color:var(--text-muted);">Jawaban Benar: <strong>${correctCount}</strong> dari <strong>${activeEvalQuestions.length}</strong> soal (KKM: ${evalKKMValue})</p>
+        </div>
+
+        <div class="infographic-box">${rekom}</div>
+
+        <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin:18px 0;">
+          ${passed ? `<button class="btn btn-teal" onclick="openCertificateModal()">🏆 Cetak Sertifikat Kelulusan</button>` : ''}
+          <button class="btn btn-orange" onclick="resetEvaluationUI()">🔄 Ulangi Evaluasi</button>
+          <button class="btn btn-purple" onclick="navigateTo('materi')">📘 Pelajari Ulang Materi</button>
+        </div>
+
+        <h4 style="margin:20px 0 10px; color:#c4b5fd;">📋 Ringkasan Pembahasan Seluruh Soal</h4>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          ${activeEvalQuestions.map((qObj, idx) => {
+            const uAns = evalAnswers[idx];
+            const ok = uAns === qObj.ans;
+            return `
+              <div style="background:rgba(7,13,31,0.7); border-left:4px solid ${ok ? '#10b981' : '#ef4444'}; padding:12px; border-radius:10px; font-size:0.88rem;">
+                <div style="font-weight:700; margin-bottom:4px;">${qObj.q}</div>
+                <div>Jawabanmu: <strong style="color:${ok ? '#10b981' : '#f87171'};">${uAns !== null ? qObj.opts[uAns] : 'Tidak dijawab'}</strong> | Kunci: <strong style="color:#5eead4;">${qObj.opts[qObj.ans]}</strong></div>
+                <div style="color:var(--text-dim); margin-top:4px;"><em>Pembahasan:</em> ${qObj.exp}</div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      `;
+    }
+
+    function resetEvaluationUI() {
+      playSFX('click');
+      document.getElementById('evalResultBox').style.display = 'none';
+      document.getElementById('evalSetupBox').style.display = 'block';
+    }
+
+    /* ==========================================================================
+       10. INITIALIZATION ON WINDOW LOAD
+       ========================================================================== */
+    window.addEventListener('DOMContentLoaded', () => {
+      initTTS();
+      renderMateriSidebar();
+      selectSubmateri(0);
+
+      // Initialize all simulations
+      runSimA();
+      runSimB();
+      runSimC();
+      runSimD();
+      runSimE();
+      calculateBusiness();
+
+      // Restore saved student inputs & badges
+      loadLKPDToUI();
+      renderBadgesUI();
+      if (appState.studentName) {
+        document.getElementById('evalStudentName').value = appState.studentName;
+      }
+      updateGlobalProgress();
+    });
+  </script>
+</body>
+</html>
